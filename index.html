@@ -32,12 +32,17 @@
     <style>
         .rtl { font-family: 'Cairo', sans-serif; direction: rtl; }
         .glass { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
-        .hero-gradient { background: linear-gradient(135deg, #0077B6 0%, #00B4D8 100%); }
         .page-content { display: none; }
         .page-active { display: block; animation: fadeIn 0.6s ease-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .float-wa { animation: floating 3s ease-in-out infinite; }
         @keyframes floating { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        
+        .hero-bg-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-slate-800">
@@ -52,8 +57,8 @@
                         <img src="https://i.ibb.co/TxW2mLGy/logo.png" alt="Sahab Voyages Logo" class="w-full h-full object-contain">
                     </div>
                     <div>
-                        <h1 class="font-extrabold text-xl text-sahab-blue leading-none">Sahab Voyages</h1>
-                        <p class="text-[10px] uppercase tracking-tighter font-bold text-sahab-green">Excellence & Spiritualité</p>
+                        <h1 class="font-extrabold text-xl text-sahab-blue leading-none" id="brand-name">Sahab Voyages</h1>
+                        <p class="text-[10px] uppercase tracking-tighter font-bold text-sahab-green" id="brand-tagline">Excellence & Spiritualité</p>
                     </div>
                 </div>
 
@@ -90,16 +95,15 @@
         
         <!-- Section: HOME / HERO -->
         <section id="home" class="page-content page-active pt-20">
-            <div class="relative min-h-[85vh] flex items-center justify-center text-center px-6 overflow-hidden">
-                <!-- Background Image -->
+            <div class="relative min-h-[90vh] flex items-center justify-center text-center px-6 overflow-hidden">
                 <div class="absolute inset-0 z-0">
-                    <img src="https://i.ibb.co/CpCjnJsq/image.png" alt="Background" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-black/40"></div>
+                    <img src="https://res.cloudinary.com/dkusr0hu1/image/upload/WhatsApp_Image_2025-12-25_at_10.55.21_yrxybi" alt="Sahab Voyages Background" class="hero-bg-img">
+                    <div class="absolute inset-0 bg-black/10"></div>
                 </div>
                 
                 <div class="max-w-4xl relative z-10">
-                    <h2 id="hero-title" class="text-4xl md:text-7xl font-extrabold text-white mb-6 leading-tight drop-shadow-lg">Votre Partenaire de Voyage Complet</h2>
-                    <p id="hero-subtitle" class="text-lg md:text-2xl text-blue-50 mb-10 font-light drop-shadow-md">Omra, Hajj, Visas, Hôtels et Billetterie - L'excellence à chaque étape</p>
+                    <h2 id="hero-title" class="text-4xl md:text-7xl font-extrabold text-white mb-6 leading-tight drop-shadow-[0_5px_15px_rgba(0,0,0,0.6)]">Votre Partenaire de Voyage Complet</h2>
+                    <p id="hero-subtitle" class="text-lg md:text-2xl text-white mb-10 font-medium drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]">Omra, Hajj, Visas, Hôtels et Billetterie - L'excellence à chaque étape</p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center">
                         <button onclick="showPage('offers')" class="bg-white text-sahab-blue px-10 py-4 rounded-full font-bold text-lg shadow-xl hover:scale-105 transition" id="hero-cta-1">Nos Offres Omra</button>
                         <button onclick="showPage('contact')" class="bg-sahab-green text-white px-10 py-4 rounded-full font-bold text-lg shadow-xl hover:scale-105 transition" id="hero-cta-2">Autres Services</button>
@@ -124,8 +128,8 @@
                         <div class="p-8">
                             <span class="text-xs font-bold text-sahab-green uppercase tracking-widest" id="tag-eco">Offre Économique</span>
                             <h3 class="text-xl font-bold mt-2 mb-4" data-fr="Omra Janvier 2026" data-ar="عمرة يناير 2026">Omra Janvier 2026</h3>
-                            <p class="text-sm text-gray-500 mb-6" data-fr="Dates : du 03 au 15 jan. ou du 12 au 26 jan." data-ar="التاريخ: من 03 إلى 15 يناير أو من 12 إلى 26 يناير">Dates : du 03 au 15 janvier ou du 12 au 26 janvier</p>
-                            <button onclick="showPage('contact')" class="w-full py-3 bg-sahab-blue text-white rounded-xl font-bold hover:bg-sahab-green transition">En savoir plus</button>
+                            <p class="text-sm text-gray-500 mb-6" data-fr="Dates : du 03 au 15 jan. ou du 12 au 26 jan." data-ar="التواريخ: من 03 إلى 15 يناير أو من 12 إلى 26 يناير">Dates : du 03 au 15 janvier ou du 12 au 26 janvier</p>
+                            <button onclick="showPage('contact')" class="w-full py-3 bg-sahab-blue text-white rounded-xl font-bold hover:bg-sahab-green transition btn-more">En savoir plus</button>
                         </div>
                     </div>
                     <!-- Offer 2 -->
@@ -136,8 +140,8 @@
                         <div class="p-8">
                             <span class="text-xs font-bold text-sahab-blue uppercase tracking-widest" id="tag-pop">Populaire</span>
                             <h3 class="text-xl font-bold mt-2 mb-4" data-fr="Omra Chaâbane 2026" data-ar="عمرة شعبان 2026">Omra Chaâbane 2026</h3>
-                            <p class="text-sm text-gray-500 mb-6" data-fr="Dates : du 26 janvier au 9 février" data-ar="التاريخ: من 26 يناير إلى 9 فبراير">Dates : du 26 janvier au 9 février</p>
-                            <button onclick="showPage('contact')" class="w-full py-3 bg-sahab-blue text-white rounded-xl font-bold hover:bg-sahab-green transition">En savoir plus</button>
+                            <p class="text-sm text-gray-500 mb-6" data-fr="Dates : du 26 janvier au 9 février" data-ar="التواريخ: من 26 يناير إلى 9 فبراير">Dates : du 26 يناير au 9 فبراير</p>
+                            <button onclick="showPage('contact')" class="w-full py-3 bg-sahab-blue text-white rounded-xl font-bold hover:bg-sahab-green transition btn-more">En savoir plus</button>
                         </div>
                     </div>
                     <!-- Offer 3 -->
@@ -148,8 +152,8 @@
                         <div class="p-8">
                             <span class="text-xs font-bold text-purple-600 uppercase tracking-widest" id="tag-ram">Spécial Ramadan</span>
                             <h3 class="text-xl font-bold mt-2 mb-4" data-fr="Omra Chaâbane & Ramadan" data-ar="عمرة شعبان ورمضان">Omra Chaâbane & Ramadan</h3>
-                            <p class="text-sm text-gray-500 mb-6" data-fr="Dates : du 03 au 23 février" data-ar="التاريخ: من 03 إلى 23 فبراير">Dates : du 03 au 23 février</p>
-                            <button onclick="showPage('contact')" class="w-full py-3 bg-sahab-blue text-white rounded-xl font-bold hover:bg-sahab-green transition">En savoir plus</button>
+                            <p class="text-sm text-gray-500 mb-6" data-fr="Dates : du 03 au 23 février" data-ar="التواريخ: من 03 إلى 23 فبراير">Dates : du 03 au 23 فبراير</p>
+                            <button onclick="showPage('contact')" class="w-full py-3 bg-sahab-blue text-white rounded-xl font-bold hover:bg-sahab-green transition btn-more">En savoir plus</button>
                         </div>
                     </div>
                 </div>
@@ -165,7 +169,7 @@
                 </div>
                 <div class="bg-white p-8 md:p-12 rounded-[3rem] shadow-xl text-center leading-relaxed">
                     <p class="text-lg md:text-xl text-gray-700" id="about-content">
-                        Sahab Voyages est une agence dédiée à l'organisation de voyages spirituels. Notre mission est de vous accompagner avec dévouement lors de votre Omra et Hajj en vous offrant des services de haute qualité, une logistique irréprochable et un encadrement humain d'exception.
+                        Sahab Voyages est une agence dédiée à l'organisation de voyages spirituels. Notre mission est de vous accompagner avec déعوement lors de votre Omra et Hajj en vous offrant des services de haute qualité, une logistique irréprochable et un encadrement humain d'exception.
                     </p>
                 </div>
             </div>
@@ -174,56 +178,51 @@
         <!-- Section: CONTACT -->
         <section id="contact" class="page-content pt-32 pb-20 px-6">
             <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <!-- Contact Info -->
                 <div>
                     <h2 id="contact-title" class="text-4xl font-black text-sahab-blue mb-8">Contactez-nous</h2>
                     <div class="space-y-6">
-                        <!-- Phones -->
                         <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                            <h4 class="font-bold text-lg mb-4 text-sahab-blue flex items-center gap-2">📞 <span data-fr="Téléphones" data-ar="الهواتف">Téléphones</span></h4>
+                            <h4 class="font-bold text-lg mb-4 text-sahab-blue flex items-center gap-2">📞 <span data-fr="Téléphones" data-ar="أرقام الهاتف">Téléphones</span></h4>
                             <div class="space-y-4">
                                 <a href="tel:+212522759167" class="flex items-center gap-3 text-gray-600 hover:text-sahab-blue transition group">
-                                    <span class="bg-blue-100 p-2 rounded-lg text-sahab-blue text-sm">Fixe</span>
-                                    <span dir="ltr">+212 5 22 75 91 67</span>
+                                    <span class="bg-blue-100 p-2 rounded-lg text-sahab-blue text-sm font-bold" data-fr="Fixe" data-ar="الهاتف الثابت">Fixe</span>
+                                    <span dir="ltr" class="font-semibold">+212 5 22 75 91 67</span>
                                 </a>
                                 <a href="tel:+212623945729" class="flex items-center gap-3 text-gray-600 hover:text-sahab-green transition group">
-                                    <span class="bg-green-100 p-2 rounded-lg text-sahab-green text-sm">Mobile</span>
-                                    <span dir="ltr">+212 6 23 94 57 29</span>
+                                    <span class="bg-green-100 p-2 rounded-lg text-sahab-green text-sm font-bold">WhatsApp</span>
+                                    <span dir="ltr" class="font-semibold">+212 6 23 94 57 29</span>
                                 </a>
                                 <a href="tel:+212666123893" class="flex items-center gap-3 text-gray-600 hover:text-sahab-green transition group">
-                                    <span class="bg-green-100 p-2 rounded-lg text-sahab-green text-sm">Mobile</span>
-                                    <span dir="ltr">+212 6 66 12 38 93</span>
+                                    <span class="bg-green-100 p-2 rounded-lg text-sahab-green text-sm font-bold" data-fr="Mobile" data-ar="الهاتف المحمول">Mobile</span>
+                                    <span dir="ltr" class="font-semibold">+212 6 66 12 38 93</span>
                                 </a>
                             </div>
                         </div>
 
-                        <!-- Emails -->
                         <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
                             <h4 class="font-bold text-lg mb-4 text-sahab-blue flex items-center gap-2">📧 <span data-fr="E-mails" data-ar="البريد الإلكتروني">E-mails</span></h4>
                             <div class="space-y-3">
-                                <a href="mailto:agencesahab@gmail.com" class="flex items-center gap-3 text-gray-600 hover:text-sahab-blue transition">
+                                <a href="mailto:agencesahab@gmail.com" class="flex items-center gap-3 text-gray-600 hover:text-sahab-blue transition font-medium underline">
                                     <span>agencesahab@gmail.com</span>
                                 </a>
-                                <a href="mailto:sahabvoyagesvisa@gmail.com" class="flex items-center gap-3 text-gray-600 hover:text-sahab-blue transition">
+                                <a href="mailto:sahabvoyagesvisa@gmail.com" class="flex items-center gap-3 text-gray-600 hover:text-sahab-blue transition font-medium underline">
                                     <span>sahabvoyagesvisa@gmail.com</span>
                                 </a>
-                                <a href="mailto:sahabvoyagesbillet@gmail.com" class="flex items-center gap-3 text-gray-600 hover:text-sahab-blue transition">
+                                <a href="mailto:sahabvoyagesbillet@gmail.com" class="flex items-center gap-3 text-gray-600 hover:text-sahab-blue transition font-medium underline">
                                     <span>sahabvoyagesbillet@gmail.com</span>
                                 </a>
                             </div>
                         </div>
 
-                        <!-- Address -->
                         <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-2xl">
                             <div class="text-2xl">📍</div>
                             <div>
                                 <h4 class="font-bold text-sahab-blue" data-fr="Adresse" data-ar="العنوان">Adresse</h4>
-                                <p class="text-gray-600">Aml 4, Rue 27, N°44, Bernoussi, Casablanca, Maroc</p>
+                                <p class="text-gray-600 font-medium" data-fr="Aml 4, Rue 27, N°44, Bernoussi, Casablanca, Maroc" data-ar="أمل 4، زنقة 27، رقم 44، البرنوصي، الدار البيضاء، المغرب">Aml 4, Rue 27, N°44, Bernoussi, Casablanca, Maroc</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- Google Maps -->
                 <div class="h-96 lg:h-full min-h-[400px] rounded-3xl overflow-hidden shadow-xl border-4 border-white">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3323.086364124976!2d-7.5023!3d33.6012!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDM2JzA0LjMiTiA3wrAzMCcwOC4zIlc!5e0!3m2!1sfr!2sma!4v1710000000000!5m2!1sfr!2sma" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
@@ -239,34 +238,34 @@
                 <div class="flex items-center gap-4 mb-6">
                     <img src="https://i.ibb.co/TxW2mLGy/logo.png" alt="Sahab Voyages" class="w-32 h-auto object-contain brightness-110">
                 </div>
-                <p class="text-slate-400 text-sm max-w-sm">Spécialiste du voyage religieux à Casablanca. Nous nous engageons à offrir une expérience spirituelle sereine et encadrée à tous nos pèlerins.</p>
+                <p class="text-slate-400 text-sm max-w-sm" id="footer-desc">Spécialiste du voyage religieux à Casablanca. Nous nous engageons à offrir une expérience spirituelle sereine et encadrée à tous nos pèlerins.</p>
             </div>
             <div>
-                <h4 class="font-bold mb-6 text-blue-400 uppercase text-xs tracking-widest">Liens rapides</h4>
+                <h4 class="font-bold mb-6 text-blue-400 uppercase text-xs tracking-widest" data-fr="Liens rapides" data-ar="روابط سريعة">Liens rapides</h4>
                 <ul class="space-y-3 text-slate-300 text-sm font-medium">
-                    <li><button onclick="showPage('offers')" class="hover:text-white transition">Nos Offres</button></li>
-                    <li><button onclick="showPage('contact')" class="hover:text-white transition">Demande de Devis</button></li>
+                    <li><button onclick="showPage('offers')" class="hover:text-white transition" data-fr="Nos Offres" data-ar="عروضنا">Nos Offres</button></li>
+                    <li><button onclick="showPage('about')" class="hover:text-white transition" data-fr="À propos" data-ar="من نحن">À propos</button></li>
+                    <li><button onclick="showPage('contact')" class="hover:text-white transition" data-fr="Contactez-nous" data-ar="اتصل بنا">Contactez-nous</button></li>
                 </ul>
             </div>
             <div>
-                <h4 class="font-bold mb-6 text-blue-400 uppercase text-xs tracking-widest">Contact Direct</h4>
-                <div class="text-slate-300 text-xs space-y-2">
+                <h4 class="font-bold mb-6 text-blue-400 uppercase text-xs tracking-widest" data-fr="Contact Direct" data-ar="اتصال مباشر">Contact Direct</h4>
+                <div class="text-slate-300 text-xs space-y-3">
                     <p><a href="tel:+212522759167" class="hover:text-white flex items-center gap-2">📞 +212 522-75-91-67</a></p>
                     <p><a href="tel:+212623945729" class="hover:text-white flex items-center gap-2">📱 +212 623-94-57-29</a></p>
-                    <p><a href="tel:+212666123893" class="hover:text-white flex items-center gap-2">📱 +212 666-12-38-93</a></p>
                     <p><a href="mailto:agencesahab@gmail.com" class="hover:text-white underline block mt-2">agencesahab@gmail.com</a></p>
                 </div>
             </div>
         </div>
-        <div class="text-center pt-8 border-t border-slate-800 text-[10px] text-slate-500 uppercase tracking-widest font-bold">
-            © 2026 Sahab Voyages. Designé avec dévotion.
+        <div class="text-center pt-8 border-t border-slate-800 text-[10px] text-slate-500 uppercase tracking-widest font-bold" id="copyright">
+            © 2026 Sahab Voyages. Excellence & Spiritualité.
         </div>
     </footer>
 
     <!-- Floating Action -->
     <div class="fixed bottom-6 right-6 flex flex-col gap-4 z-50">
         <a href="https://wa.me/212623945729" target="_blank" class="w-16 h-16 bg-sahab-green text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition float-wa text-3xl">
-            <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M12.031 6.172c-2.32 0-4.591.562-6.563 1.632l-.469.25-3.328-.875.891 3.25-.281.438c-1.141 1.844-1.75 3.969-1.75 6.156 0 6.141 5.016 11.141 11.156 11.141 2.453 0 4.813-.813 6.781-2.328l.5-.391 4 1.047-1.063-3.891.359-.578c1.375-2.203 2.109-4.734 2.109-7.375 0-7.859-6.391-14.234-14.25-14.234h-.016zm6.813 18.047c-1.922 1.406-4.219 2.156-6.594 2.156-6.438 0-11.688-5.25-11.688-11.688 0-2.141.578-4.219 1.688-6.047l-.016-.016-1.125-4.109 4.234 1.109c1.781-.953 3.797-1.453 5.859-1.453h.016c7.5 0 13.594 6.094 13.594 13.594 0 2.531-.703 5.016-2.031 7.156l-.016.031 1.094 4.016-4.016-1.047zM16.734 18.5c-.266-.141-1.578-.781-1.813-.859-.25-.094-.422-.141-.594.141-.188.266-.688.859-.844 1.047-.141.188-.313.219-.578.078-.266-.141-1.125-.422-2.141-1.328-.797-.703-1.328-1.578-1.484-1.844-.172-.266-.016-.422.125-.563.125-.125.266-.313.406-.469.125-.156.172-.266.25-.438.078-.172.047-.313-.016-.438-.078-.141-.594-1.422-.813-1.953-.219-.531-.438-.453-.594-.469-.156-.016-.328-.016-.5-.016s-.453.063-.688.313c-.25.25-.938.922-.938 2.25s.969 2.609 1.109 2.797c.141.188 1.906 2.906 4.609 4.078.656.281 1.156.453 1.547.578.656.203 1.25.172 1.719.109.516-.078 1.578-.641 1.813-1.266.219-.625.219-1.156.156-1.266-.063-.109-.25-.172-.516-.313z"></path></svg>
+            <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M12.031 6.172c-2.32 0-4.591.562-6.563 1.632l-.469.25-3.328-.875.891 3.25-.281.438c-1.141 1.844-1.75 3.969-1.75 6.156 0 6.141 5.016 11.141 11.156 11.141 2.453 0 4.813-.813 6.781-2.328l.5-.391 4 1.047-1.063-3.891.359-.578c1.375-2.203 2.109-4.734 2.109-7.375 0-7.859-6.391-14.234-14.25-14.234h-.016zm6.813 18.047c-1.922 1.406-4.219 2.156-6.594 2.156-6.438 0-11.688-5.25-11.688-11.688 0-2.141.578-4.219 1.688-6.047l-.016-.016-1.125-4.109 4.234 1.109c1.781-.953 3.797-1.453 5.859-1.453h.016c7.5 0 13.594 6.094 13.594 13.594 0 2.531-.703 5.016-2.031 7.156l-.016.031 1.094 4.016-4.016-1.047zM16.734 18.5c-.266-.141-1.578-.781-1.813-.859-.25-.094-.422-.141-.594.141-.188.266-.688.859-.844 1.047-.141.188-.313.219-.578.078-.266-.141-1.125-.422-2.141-1.328-.797-.703-1.328-1.578-1.484-1.844-.172-.266-.016-.422.125-.563.125-.125.266-.313.406-.469.125-.156.172-.266.25-.438.078-.172.047-.313-.016-.438-.078-.172.047-.313-.016-.438-.078-.141-.594-1.422-.813-1.953-.219-.531-.438-.453-.594-.469-.156-.016-.328-.016-.5-.016s-.453.063-.688.313c-.25.25-.938.922-.938 2.25s.969 2.609 1.109 2.797c.141.188 1.906 2.906 4.609 4.078.656.281 1.156.453 1.547.578.656.203 1.25.172 1.719.109.516-.078 1.578-.641 1.813-1.266.219-.625.219-1.156.156-1.266-.063-.109-.25-.172-.516-.313z"></path></svg>
         </a>
     </div>
 
@@ -276,18 +275,22 @@
 
         const translations = {
             fr: {
+                brand: { name: "Sahab Voyages", tagline: "Excellence & Spiritualité" },
                 nav: { home: 'Accueil', about: 'À propos', offers: 'Offres Omra', contact: 'Contact' },
                 hero: { title: "Votre Partenaire de Voyage Complet", subtitle: "Omra, Hajj, Visas, Hôtels et Billetterie - L'excellence à chaque étape", cta1: "Nos Offres Omra", cta2: "Autres Services" },
-                offers: { title: "Offres Omra 2026", eco: "Offre Économique", pop: "Populaire", ram: "Spécial Ramadan" },
+                offers: { title: "Offres Omra 2026", eco: "Offre Économique", pop: "Populaire", ram: "Spécial Ramadan", more: "En savoir plus" },
                 about: { title: "À propos de nous", content: "Sahab Voyages est une agence dédiée à l'organisation de voyages spirituels. Notre mission est de vous accompagner avec dévouement lors de votre Omra et Hajj en vous offrant des services de haute qualité, une logistique irréprochable et un encadrement humain d'exception." },
-                contact: { title: "Contactez-nous" }
+                contact: { title: "Contactez-nous" },
+                footer: { desc: "Spécialiste du voyage religieux à Casablanca. Nous nous engageons à offrir une expérience spirituelle sereine et encadrée à tous nos pèlerins.", copyright: "© 2026 أسفار سحاب - Sahab Voyages. جميع الحقوق محفوظة." }
             },
             ar: {
+                brand: { name: "أسفار سحاب", tagline: "تميز و روحانية" },
                 nav: { home: 'الرئيسية', about: 'من نحن', offers: 'عروض العمرة', contact: 'اتصل بنا' },
-                hero: { title: "شريكك المتكامل في السفر", subtitle: "عمرة، حج، تأشيرات، فنادق وتذاكر طيران - التميز في كل خطوة", cta1: "عروض العمرة", cta2: "خدمات أخرى" },
-                offers: { title: "عروض العمرة 2026", eco: "عرض اقتصادي", pop: "الأكثر طلباً", ram: "خاص برمضان" },
-                about: { title: "من نحن", content: "أسفار سحاب هي وكالة متخصصة في تنظيم الرحلات الدينية. مهمتنا هي مرافقتكم بتفانٍ خلال مناسك العمرة والحج من خلال تقديم خدمات عالية الجودة، ولوجستيات متكاملة، وتأطير إنساني متميز." },
-                contact: { title: "اتصل بنا" }
+                hero: { title: "شريككم المتكامل في السفر", subtitle: "عمرة، حج، تأشيرات، فنادق وتذاكر طيران - التميز في كل خطوة", cta1: "عروض العمرة", cta2: "خدمات أخرى" },
+                offers: { title: "عروض العمرة 2026", eco: "عرض اقتصادي", pop: "الأكثر طلباً", ram: "خاص برمضان", more: "اكتشف المزيد" },
+                about: { title: "من نحن", content: "أسفار سحاب هي وكالة متخصصة في تنظيم الرحلات الروحانية. مهمتنا هي مرافقتكم بتفانٍ خلال مناسك العمرة والحج من خلال تقديم خدمات عالية الجودة، ولوجستيات متكاملة، وتأطير إنساني متميز يضمن لكم السكينة." },
+                contact: { title: "اتصل بنا" },
+                footer: { desc: "متخصصون في الرحلات الدينية بالدار البيضاء. نلتزم بتقديم تجربة روحانية هادئة ومنظمة لجميع ضيوف الرحمن.", copyright: "© 2026 أسفار سحاب. تميز وروحانية." }
             }
         };
 
@@ -317,9 +320,13 @@
             document.documentElement.lang = currentLang;
             document.body.classList.toggle('rtl', isRtl);
             
-            // Update Buttons
+            // Language Button Text
             document.getElementById('lang-btn').innerText = currentLang === 'fr' ? 'العربية' : 'Français';
             
+            // Brand
+            document.getElementById('brand-name').innerText = t.brand.name;
+            document.getElementById('brand-tagline').innerText = t.brand.tagline;
+
             // Nav
             document.querySelectorAll('[data-key]').forEach(el => {
                 const key = el.getAttribute('data-key');
@@ -337,18 +344,23 @@
             document.getElementById('tag-eco').innerText = t.offers.eco;
             document.getElementById('tag-pop').innerText = t.offers.pop;
             document.getElementById('tag-ram').innerText = t.offers.ram;
+            document.querySelectorAll('.btn-more').forEach(btn => btn.innerText = t.offers.more);
             
-            // Dynamic text for cards and tables
-            document.querySelectorAll('[data-fr][data-ar]').forEach(el => {
-                el.innerText = el.getAttribute(`data-${currentLang}`);
-            });
-
             // About
             document.getElementById('about-title').innerText = t.about.title;
             document.getElementById('about-content').innerText = t.about.content;
 
             // Contact
             document.getElementById('contact-title').innerText = t.contact.title;
+
+            // Footer
+            document.getElementById('footer-desc').innerText = t.footer.desc;
+            document.getElementById('copyright').innerText = t.footer.copyright;
+
+            // Global Data attributes for items not manually linked
+            document.querySelectorAll('[data-fr][data-ar]').forEach(el => {
+                el.innerText = el.getAttribute(`data-${currentLang}`);
+            });
         }
 
         // Init
