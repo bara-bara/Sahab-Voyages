@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Omra 2026 avec Sahab Voyages - Des séjours spirituels inoubliables à des prix accessibles. Agence spécialisée Hajj et Omra à Casablanca.">
+    <meta name="description" content="Omra 2026 avec Sahab Voyages - Des séjours spirituels inoubliables. Agence spécialisée Hajj et Omra à Casablanca.">
     <title>Sahab Voyages | Omra 2026 & Hajj</title>
     
     <!-- Tailwind CSS -->
@@ -62,7 +62,6 @@
                     <button onclick="showPage('home')" class="hover:text-sahab-blue transition" data-key="home">Accueil</button>
                     <button onclick="showPage('about')" class="hover:text-sahab-blue transition" data-key="about">À propos</button>
                     <button onclick="showPage('offers')" class="hover:text-sahab-blue transition" data-key="offers">Offres Omra</button>
-                    <button onclick="showPage('prices')" class="hover:text-sahab-blue transition" data-key="prices">Tarifs</button>
                     <button onclick="showPage('contact')" class="hover:text-sahab-blue transition" data-key="contact">Contact</button>
                     <button onclick="toggleLanguage()" id="lang-btn" class="ml-4 bg-sahab-blue text-white px-4 py-1.5 rounded-full text-xs font-bold hover:bg-sahab-green transition">العربية</button>
                 </div>
@@ -82,7 +81,6 @@
             <button onclick="showPage('home')" class="text-left font-bold py-2 border-b border-gray-50" data-key="home">Accueil</button>
             <button onclick="showPage('about')" class="text-left font-bold py-2 border-b border-gray-50" data-key="about">À propos</button>
             <button onclick="showPage('offers')" class="text-left font-bold py-2 border-b border-gray-50" data-key="offers">Offres Omra</button>
-            <button onclick="showPage('prices')" class="text-left font-bold py-2 border-b border-gray-50" data-key="prices">Tarifs</button>
             <button onclick="showPage('contact')" class="text-left font-bold py-2 border-b border-gray-50" data-key="contact">Contact</button>
         </div>
     </nav>
@@ -92,13 +90,16 @@
         
         <!-- Section: HOME / HERO -->
         <section id="home" class="page-content page-active pt-20">
-            <div class="hero-gradient min-h-[85vh] flex items-center justify-center text-center px-6 relative overflow-hidden">
-                <div class="absolute inset-0 opacity-10">
-                    <svg width="100%" height="100%"><pattern id="pattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="white"/></pattern><rect width="100%" height="100%" fill="url(#pattern)"/></svg>
+            <div class="relative min-h-[85vh] flex items-center justify-center text-center px-6 overflow-hidden">
+                <!-- Background Image -->
+                <div class="absolute inset-0 z-0">
+                    <img src="https://i.ibb.co/k66Tqf1G/image.png" alt="Background" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black/40"></div>
                 </div>
+                
                 <div class="max-w-4xl relative z-10">
-                    <h2 id="hero-title" class="text-4xl md:text-7xl font-extrabold text-white mb-6 leading-tight">Omra 2026 avec Sahab Voyages</h2>
-                    <p id="hero-subtitle" class="text-lg md:text-2xl text-blue-50 mb-10 font-light">Des séjours spirituels inoubliables à des prix accessibles</p>
+                    <h2 id="hero-title" class="text-4xl md:text-7xl font-extrabold text-white mb-6 leading-tight drop-shadow-lg">Omra 2026 avec Sahab Voyages</h2>
+                    <p id="hero-subtitle" class="text-lg md:text-2xl text-blue-50 mb-10 font-light drop-shadow-md">Des séjours spirituels inoubliables à des prix accessibles</p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center">
                         <button onclick="showPage('offers')" class="bg-white text-sahab-blue px-10 py-4 rounded-full font-bold text-lg shadow-xl hover:scale-105 transition" id="hero-cta-1">Réserver maintenant</button>
                         <button onclick="showPage('contact')" class="bg-sahab-green text-white px-10 py-4 rounded-full font-bold text-lg shadow-xl hover:scale-105 transition" id="hero-cta-2">Demander un devis</button>
@@ -135,7 +136,7 @@
                         <div class="p-8">
                             <span class="text-xs font-bold text-sahab-blue uppercase tracking-widest" id="tag-pop">Populaire</span>
                             <h3 class="text-xl font-bold mt-2 mb-4" data-fr="Omra Chaâbane 2026" data-ar="عمرة شعبان 2026">Omra Chaâbane 2026</h3>
-                            <p class="text-sm text-gray-500 mb-6" data-fr="Dates : du 26 janvier au 9 février" data-ar="التاريخ: من 26 يناير إلى 9 فبراير">Dates : du 26 يناير إلى 9 فبراير</p>
+                            <p class="text-sm text-gray-500 mb-6" data-fr="Dates : du 26 janvier au 9 février" data-ar="التاريخ: من 26 يناير إلى 9 فبراير">Dates : du 26 janvier au 9 février</p>
                             <button onclick="showPage('contact')" class="w-full py-3 bg-sahab-blue text-white rounded-xl font-bold hover:bg-sahab-green transition">En savoir plus</button>
                         </div>
                     </div>
@@ -147,60 +148,10 @@
                         <div class="p-8">
                             <span class="text-xs font-bold text-purple-600 uppercase tracking-widest" id="tag-ram">Spécial Ramadan</span>
                             <h3 class="text-xl font-bold mt-2 mb-4" data-fr="Omra Chaâbane & Ramadan" data-ar="عمرة شعبان ورمضان">Omra Chaâbane & Ramadan</h3>
-                            <p class="text-sm text-gray-500 mb-6" data-fr="Dates : du 03 au 23 février" data-ar="التاريخ: من 03 إلى 23 فبراير">Dates : du 03 au 23 فبراير</p>
+                            <p class="text-sm text-gray-500 mb-6" data-fr="Dates : du 03 au 23 février" data-ar="التاريخ: من 03 إلى 23 فبراير">Dates : du 03 au 23 février</p>
                             <button onclick="showPage('contact')" class="w-full py-3 bg-sahab-blue text-white rounded-xl font-bold hover:bg-sahab-green transition">En savoir plus</button>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section: PRICES -->
-        <section id="prices" class="page-content pt-32 pb-20 px-6 bg-blue-50">
-            <div class="max-w-5xl mx-auto">
-                <div class="text-center mb-12">
-                    <h2 id="prices-title" class="text-4xl font-black text-sahab-blue mb-4">Nos Tarifs 2026</h2>
-                    <p id="prices-desc" class="text-gray-600">Hébergement de qualité à Médine et La Mecque</p>
-                </div>
-                
-                <div class="overflow-x-auto bg-white rounded-3xl shadow-xl p-4 md:p-8">
-                    <table class="w-full text-left border-collapse">
-                        <thead>
-                            <tr class="text-sahab-blue border-b-2 border-blue-50">
-                                <th class="py-4 px-4 font-bold" data-fr="Type de Chambre" data-ar="نوع الغرفة">Type de Chambre</th>
-                                <th class="py-4 px-4 font-bold" data-fr="Tarif / Personne" data-ar="الثمن / للشخص">Tarif / Personne</th>
-                                <th class="py-4 px-4 font-bold" data-fr="Hôtels" data-ar="الفنادق">Hôtels</th>
-                            </tr>
-                        </thead>
-                        <tbody class="text-gray-700 font-medium">
-                            <tr class="border-b border-gray-50">
-                                <td class="py-4 px-4">Quintuple (5)</td>
-                                <td class="py-4 px-4 text-sahab-green font-bold">Sur demande</td>
-                                <td class="py-4 px-4 rowspan-4">
-                                    <span class="block font-bold text-sahab-blue">Médine:</span> Proche Al Haram<br>
-                                    <span class="block font-bold text-sahab-blue mt-2">Mecque:</span> Confort & Proximité
-                                </td>
-                            </tr>
-                            <tr class="border-b border-gray-50">
-                                <td class="py-4 px-4">Quadruple (4)</td>
-                                <td class="py-4 px-4 text-sahab-green font-bold">Eco Plus</td>
-                                <td></td>
-                            </tr>
-                            <tr class="border-b border-gray-50">
-                                <td class="py-4 px-4">Triple (3)</td>
-                                <td class="py-4 px-4 text-sahab-green font-bold">Standard</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="py-4 px-4">Double (2)</td>
-                                <td class="py-4 px-4 text-sahab-green font-bold">Premium</td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="mt-8 p-6 bg-white rounded-2xl border-l-4 border-sahab-green text-sm text-gray-600 shadow-sm" id="prices-inclusion">
-                    <p><strong>✓ Inclus :</strong> Billet d’avion, visa, hébergement, petit-déjeuner, transferts internes et accompagnement professionnel.</p>
                 </div>
             </div>
         </section>
@@ -214,7 +165,7 @@
                 </div>
                 <div class="bg-white p-8 md:p-12 rounded-[3rem] shadow-xl text-center leading-relaxed">
                     <p class="text-lg md:text-xl text-gray-700" id="about-content">
-                        Sahab Voyages est une agence dédiée à l'organisation de voyages spirituels. Notre mission est de vous accompagner avec dévouement lors de votre Omra et Hajj en vous offrant des services de haute qualité, une logistique irréprochable et un encادrement humain d'exception.
+                        Sahab Voyages est une agence dédiée à l'organisation de voyages spirituels. Notre mission est de vous accompagner avec dévouement lors de votre Omra et Hajj en vous offrant des services de haute qualité, une logistique irréprochable et un encadrement humain d'exception.
                     </p>
                 </div>
             </div>
@@ -227,41 +178,49 @@
                 <div>
                     <h2 id="contact-title" class="text-4xl font-black text-sahab-blue mb-8">Contactez-nous</h2>
                     <div class="space-y-6">
-                        <div class="flex items-start gap-4">
-                            <div class="bg-blue-100 p-3 rounded-xl text-sahab-blue text-xl leading-none">📍</div>
+                        <!-- Phones -->
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                            <h4 class="font-bold text-lg mb-4 text-sahab-blue flex items-center gap-2"><span class="text-2xl">📞</span> <span data-fr="Téléphone" data-ar="الهاتف">Téléphone</span></h4>
+                            <div class="space-y-3">
+                                <a href="tel:+212522759167" class="flex items-center gap-3 text-gray-600 hover:text-sahab-blue transition group">
+                                    <span class="bg-blue-100 p-2 rounded-lg text-sahab-blue text-sm group-hover:bg-sahab-blue group-hover:text-white transition">Fixe</span>
+                                    <span dir="ltr">+212 5 22 75 91 67</span>
+                                </a>
+                                <a href="tel:+212623945729" class="flex items-center gap-3 text-gray-600 hover:text-sahab-green transition group">
+                                    <span class="bg-green-100 p-2 rounded-lg text-sahab-green text-sm group-hover:bg-sahab-green group-hover:text-white transition">Mobile</span>
+                                    <span dir="ltr">+212 6 23 94 57 29</span>
+                                </a>
+                                <a href="tel:+212666123893" class="flex items-center gap-3 text-gray-600 hover:text-sahab-green transition group">
+                                    <span class="bg-green-100 p-2 rounded-lg text-sahab-green text-sm group-hover:bg-sahab-green group-hover:text-white transition">Mobile</span>
+                                    <span dir="ltr">+212 6 66 12 38 93</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Emails -->
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                            <h4 class="font-bold text-lg mb-4 text-sahab-blue flex items-center gap-2"><span class="text-2xl">📧</span> <span data-fr="E-mail" data-ar="البريد الإلكتروني">E-mail</span></h4>
+                            <div class="space-y-3">
+                                <a href="mailto:agencesahab@gmail.com" class="flex items-center gap-3 text-gray-600 hover:text-sahab-blue transition">
+                                    <span>Agencesahab@gmail.com</span>
+                                </a>
+                                <a href="mailto:sahabvoyagesvisa@gmail.com" class="flex items-center gap-3 text-gray-600 hover:text-sahab-blue transition">
+                                    <span>sahabvoyagesvisa@gmail.com</span>
+                                </a>
+                                <a href="mailto:sahabvoyagesbillet@gmail.com" class="flex items-center gap-3 text-gray-600 hover:text-sahab-blue transition">
+                                    <span>sahabvoyagesbillet@gmail.com</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Address -->
+                        <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-2xl">
+                            <div class="text-2xl">📍</div>
                             <div>
-                                <h4 class="font-bold">Adresse</h4>
+                                <h4 class="font-bold text-sahab-blue" data-fr="Adresse" data-ar="العنوان">Adresse</h4>
                                 <p class="text-gray-600">Aml 4, Rue 27, N°44, Bernoussi, Casablanca, Maroc</p>
                             </div>
                         </div>
-                        <a href="mailto:Agencesahab@gmail.com" class="flex items-start gap-4 group">
-                            <div class="bg-blue-100 p-3 rounded-xl text-sahab-blue text-xl leading-none group-hover:bg-sahab-blue group-hover:text-white transition">📧</div>
-                            <div>
-                                <h4 class="font-bold group-hover:text-sahab-blue transition">Email</h4>
-                                <p class="text-gray-600">Agencesahab@gmail.com</p>
-                            </div>
-                        </a>
-                        <a href="tel:+212522759167" class="flex items-start gap-4 group">
-                            <div class="bg-blue-100 p-3 rounded-xl text-sahab-blue text-xl leading-none group-hover:bg-sahab-blue group-hover:text-white transition">📞</div>
-                            <div>
-                                <h4 class="font-bold group-hover:text-sahab-blue transition">Téléphone Fixe</h4>
-                                <p class="text-gray-600">(+212) 0522-75-91-67</p>
-                            </div>
-                        </a>
-                        <a href="tel:+212623945729" class="flex items-start gap-4 border-l-4 border-sahab-green pl-4 group">
-                            <div class="bg-green-100 p-3 rounded-xl text-sahab-green text-xl leading-none group-hover:bg-sahab-green group-hover:text-white transition">📱</div>
-                            <div>
-                                <h4 class="font-bold group-hover:text-sahab-green transition">Mobile (Maroc)</h4>
-                                <p class="text-gray-600">(+212) 0623-94-57-29</p>
-                            </div>
-                        </a>
-                        <a href="https://wa.me/966560852275" target="_blank" class="flex items-start gap-4 border-l-4 border-sahab-blue pl-4 group">
-                            <div class="bg-blue-50 p-3 rounded-xl text-blue-600 text-xl leading-none group-hover:bg-sahab-blue group-hover:text-white transition">🇸🇦</div>
-                            <div>
-                                <h4 class="font-bold group-hover:text-sahab-blue transition">WhatsApp (Arabie Saoudite)</h4>
-                                <p class="text-gray-600">(+966) 560-852-275</p>
-                            </div>
-                        </a>
                     </div>
                 </div>
                 <!-- Google Maps -->
@@ -278,8 +237,7 @@
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
             <div class="col-span-1 lg:col-span-2">
                 <div class="flex items-center gap-4 mb-6">
-                    <img src="https://i.ibb.co/TxW2mLGy/logo.png" alt="Sahab Voyages" class="w-12 h-12 brightness-0 invert">
-                    <h3 class="text-2xl font-black text-sahab-blue">Sahab Voyages</h3>
+                    <img src="https://i.ibb.co/TxW2mLGy/logo.png" alt="Sahab Voyages" class="w-32 h-auto object-contain brightness-110">
                 </div>
                 <p class="text-slate-400 text-sm max-w-sm">Spécialiste du voyage religieux à Casablanca. Nous nous engageons à offrir une expérience spirituelle sereine et encadrée à tous nos pèlerins.</p>
             </div>
@@ -287,16 +245,16 @@
                 <h4 class="font-bold mb-6 text-blue-400 uppercase text-xs tracking-widest">Liens rapides</h4>
                 <ul class="space-y-3 text-slate-300 text-sm font-medium">
                     <li><button onclick="showPage('offers')" class="hover:text-white transition">Nos Offres</button></li>
-                    <li><button onclick="showPage('prices')" class="hover:text-white transition">Grille Tarifaire</button></li>
                     <li><button onclick="showPage('contact')" class="hover:text-white transition">Demande de Devis</button></li>
                 </ul>
             </div>
             <div>
                 <h4 class="font-bold mb-6 text-blue-400 uppercase text-xs tracking-widest">Contact Direct</h4>
                 <div class="text-slate-300 text-xs space-y-2">
-                    <p>Casablanca: <a href="tel:+212522759167" class="hover:text-white">+212 522-75-91-67</a></p>
-                    <p>WhatsApp: <a href="https://wa.me/212623945729" class="hover:text-white text-sahab-green">+212 623-94-57-29</a></p>
-                    <p>Email: <a href="mailto:Agencesahab@gmail.com" class="hover:text-white underline">Agencesahab@gmail.com</a></p>
+                    <p><a href="tel:+212522759167" class="hover:text-white flex items-center gap-2">📞 +212 522-75-91-67</a></p>
+                    <p><a href="tel:+212623945729" class="hover:text-white flex items-center gap-2">📱 +212 623-94-57-29</a></p>
+                    <p><a href="tel:+212666123893" class="hover:text-white flex items-center gap-2">📱 +212 666-12-38-93</a></p>
+                    <p><a href="mailto:Agencesahab@gmail.com" class="hover:text-white underline block mt-2">Agencesahab@gmail.com</a></p>
                 </div>
             </div>
         </div>
@@ -318,18 +276,16 @@
 
         const translations = {
             fr: {
-                nav: { home: 'Accueil', about: 'À propos', offers: 'Offres Omra', prices: 'Tarifs', contact: 'Contact' },
+                nav: { home: 'Accueil', about: 'À propos', offers: 'Offres Omra', contact: 'Contact' },
                 hero: { title: "Omra 2026 avec Sahab Voyages", subtitle: "Des séjours spirituels inoubliables à des prix accessibles", cta1: "Réserver maintenant", cta2: "Demander un devis" },
                 offers: { title: "Offres Omra 2026", eco: "Offre Économique", pop: "Populaire", ram: "Spécial Ramadan" },
-                prices: { title: "Nos Tarifs 2026", desc: "Hébergement de qualité à Médine et La Mecque", inclusion: "<strong>✓ Inclus :</strong> Billet d’avion, visa, hébergement, petit-déjeuner, transferts internes et accompagnement professionnel." },
                 about: { title: "À propos de nous", content: "Sahab Voyages est une agence dédiée à l'organisation de voyages spirituels. Notre mission est de vous accompagner avec dévouement lors de votre Omra et Hajj en vous offrant des services de haute qualité, une logistique irréprochable et un encadrement humain d'exception." },
                 contact: { title: "Contactez-nous" }
             },
             ar: {
-                nav: { home: 'الرئيسية', about: 'من نحن', offers: 'عروض العمرة', prices: 'الأثمنة', contact: 'اتصل بنا' },
+                nav: { home: 'الرئيسية', about: 'من نحن', offers: 'عروض العمرة', contact: 'اتصل بنا' },
                 hero: { title: "عمرة 2026 مع أسفار سحاب", subtitle: "رحلات إيمانية لا تُنسى بأسعار في المتناول", cta1: "احجز الآن", cta2: "طلب عرض سعر" },
                 offers: { title: "عروض العمرة 2026", eco: "عرض اقتصادي", pop: "الأكثر طلباً", ram: "خاص برمضان" },
-                prices: { title: "أثمنة سنة 2026", desc: "إقامة متميزة في المدينة المنورة ومكة المكرمة", inclusion: "<strong>✓ تشمل:</strong> تذكرة الطائرة، التأشيرة، الإقامة، الفطور، التنقلات الداخلية والمرافقة المهنية." },
                 about: { title: "من نحن", content: "أسفار سحاب هي وكالة متخصصة في تنظيم الرحلات الدينية. مهمتنا هي مرافقتكم بتفانٍ خلال مناسك العمرة والحج من خلال تقديم خدمات عالية الجودة، ولوجستيات متكاملة، وتأطير إنساني متميز." },
                 contact: { title: "اتصل بنا" }
             }
@@ -366,7 +322,8 @@
             
             // Nav
             document.querySelectorAll('[data-key]').forEach(el => {
-                el.innerText = t.nav[el.getAttribute('data-key')];
+                const key = el.getAttribute('data-key');
+                if (t.nav[key]) el.innerText = t.nav[key];
             });
 
             // Hero
@@ -385,11 +342,6 @@
             document.querySelectorAll('[data-fr][data-ar]').forEach(el => {
                 el.innerText = el.getAttribute(`data-${currentLang}`);
             });
-
-            // Prices
-            document.getElementById('prices-title').innerText = t.prices.title;
-            document.getElementById('prices-desc').innerText = t.prices.desc;
-            document.getElementById('prices-inclusion').innerHTML = `<p>${t.prices.inclusion}</p>`;
 
             // About
             document.getElementById('about-title').innerText = t.about.title;
