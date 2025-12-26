@@ -3,14 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Omra 2026 avec Sahab Voyages - Des séjours spirituels inoubliables à des prix accessibles. Agence spécialisée Hajj et Omra à Casablanca.">
-    <title>Sahab Voyages | Omra 2026 & Hajj</title>
-    
-    <!-- Tailwind CSS -->
+    <title>Sahab Voyages | Omra & Visas</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <script>
         tailwind.config = {
@@ -18,11 +14,9 @@
                 extend: {
                     colors: {
                         'sahab-blue': '#0077B6',
-                        'sahab-green': '#4CAF50',
-                    },
-                    fontFamily: {
-                        'sans': ['Poppins', 'sans-serif'],
-                        'arabic': ['Cairo', 'sans-serif'],
+                        'sahab-green': '#25D366',
+                        'sahab-gold': '#C5A059',
+                        'sahab-dark': '#0F172A',
                     }
                 }
             }
@@ -30,341 +24,376 @@
     </script>
 
     <style>
+        body { font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
         .rtl { font-family: 'Cairo', sans-serif; direction: rtl; }
         .glass { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
-        .page-content { display: none; }
-        .page-active { display: block; animation: fadeIn 0.6s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .float-wa { animation: floating 3s ease-in-out infinite; }
-        @keyframes floating { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
         
-        .hero-bg-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .hero-bg {
+            background-image: linear-gradient(rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.6)), 
+                              url('https://res.cloudinary.com/dkusr0hu1/image/upload/WhatsApp_Image_2025-12-25_at_10.55.21_yrxybi');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
+
+        .offer-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .offer-card:hover { transform: translateY(-10px); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); }
+
+        .img-container {
+            width: 100%;
+            height: 320px;
+            background-color: #f8fafc;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .img-container img { width: 100%; height: 100%; object-fit: contain; padding: 10px; transition: transform 0.5s; }
+        .offer-card:hover img { transform: scale(1.05); }
+
+        .tab-btn.active { background-color: #0077B6; color: white; border-color: #0077B6; box-shadow: 0 4px 12px rgba(0, 119, 182, 0.3); }
+        .page-section { display: none; }
+        .active-section { display: block; animation: fadeIn 0.6s ease-out; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .contact-link { transition: color 0.3s; }
+        .contact-link:hover { color: #0077B6; text-decoration: underline; }
     </style>
 </head>
-<body class="bg-gray-50 text-slate-800">
+<body class="bg-slate-50 text-slate-900">
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 glass border-b border-blue-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20 items-center">
-                <!-- Logo & Brand -->
-                <div class="flex items-center gap-3 cursor-pointer" onclick="showPage('home')">
-                    <div class="w-14 h-14 flex items-center justify-center overflow-hidden">
-                        <img src="https://i.ibb.co/TxW2mLGy/logo.png" alt="Sahab Voyages Logo" class="w-full h-full object-contain">
-                    </div>
-                    <div>
-                        <h1 class="font-extrabold text-xl text-sahab-blue leading-none" id="brand-name">Sahab Voyages</h1>
-                        <p class="text-[10px] uppercase tracking-tighter font-bold text-sahab-green" id="brand-tagline">Excellence & Spiritualité</p>
-                    </div>
-                </div>
-
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center gap-8 font-semibold text-sm">
-                    <button onclick="showPage('home')" class="hover:text-sahab-blue transition" data-key="home">Accueil</button>
-                    <button onclick="showPage('about')" class="hover:text-sahab-blue transition" data-key="about">À propos</button>
-                    <button onclick="showPage('offers')" class="hover:text-sahab-blue transition" data-key="offers">Offres Omra</button>
-                    <button onclick="showPage('contact')" class="hover:text-sahab-blue transition" data-key="contact">Contact</button>
-                    <button onclick="toggleLanguage()" id="lang-btn" class="ml-4 bg-sahab-blue text-white px-4 py-1.5 rounded-full text-xs font-bold hover:bg-sahab-green transition">العربية</button>
-                </div>
-
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center gap-4">
-                    <button onclick="toggleLanguage()" class="text-xs font-bold text-sahab-blue border border-sahab-blue px-2 py-1 rounded">AR/FR</button>
-                    <button onclick="toggleMobileMenu()" class="text-sahab-blue">
-                        <svg width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
-                    </button>
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full z-50 glass border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <div class="flex items-center gap-4 cursor-pointer" onclick="showSection('home')">
+                <img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766748193/LOGO_SAHAB_cr3qjr.png" alt="Sahab" class="h-14">
+                <div class="hidden sm:block">
+                    <h1 class="font-black text-xl text-sahab-blue leading-none">Sahab Voyages</h1>
+                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest translate-lang" data-key="nav-sub">L'excellence du voyage</p>
                 </div>
             </div>
-        </div>
+            
+            <div class="hidden md:flex items-center gap-8 font-bold text-sm">
+                <button onclick="showSection('home')" class="hover:text-sahab-blue transition translate-lang" data-key="nav-home">Accueil</button>
+                <button onclick="showSection('offers')" class="hover:text-sahab-blue transition translate-lang" data-key="nav-offers">Nos Offres</button>
+                <button onclick="showSection('contact')" class="hover:text-sahab-blue transition translate-lang" data-key="nav-contact">Contact</button>
+                <button onclick="toggleLang()" id="langBtn" class="bg-sahab-blue text-white px-6 py-2 rounded-full hover:bg-blue-600 transition shadow-md">العربية</button>
+            </div>
 
-        <!-- Mobile Menu Overlay -->
-        <div id="mobile-menu" class="hidden absolute top-20 left-0 w-full bg-white border-b shadow-xl p-6 flex flex-col gap-4 md:hidden">
-            <button onclick="showPage('home')" class="text-left font-bold py-2 border-b border-gray-50" data-key="home">Accueil</button>
-            <button onclick="showPage('about')" class="text-left font-bold py-2 border-b border-gray-50" data-key="about">À propos</button>
-            <button onclick="showPage('offers')" class="text-left font-bold py-2 border-b border-gray-50" data-key="offers">Offres Omra</button>
-            <button onclick="showPage('contact')" class="text-left font-bold py-2 border-b border-gray-50" data-key="contact">Contact</button>
+            <button onclick="toggleMobileMenu()" class="md:hidden text-2xl text-sahab-blue"><i class="fas fa-bars"></i></button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-b p-6 flex flex-col gap-4 shadow-xl">
+            <button onclick="showSection('home')" class="font-bold text-left translate-lang" data-key="nav-home">Accueil</button>
+            <button onclick="showSection('offers')" class="font-bold text-left translate-lang" data-key="nav-offers">Nos Offres</button>
+            <button onclick="showSection('contact')" class="font-bold text-left translate-lang" data-key="nav-contact">Contact</button>
+            <button onclick="toggleLang()" class="text-sahab-blue font-bold text-left">Français / العربية</button>
         </div>
     </nav>
 
-    <!-- Content Sections -->
-    <div id="main-content">
+    <!-- Main Content -->
+    <main class="pt-20">
         
-        <!-- Section: HOME / HERO -->
-        <section id="home" class="page-content page-active pt-20">
-            <div class="relative min-h-[90vh] flex items-center justify-center text-center px-6 overflow-hidden">
-                <div class="absolute inset-0 z-0">
-                    <img src="https://res.cloudinary.com/dkusr0hu1/image/upload/WhatsApp_Image_2025-12-25_at_10.55.21_yrxybi" alt="Sahab Voyages Background" class="hero-bg-img">
-                    <div class="absolute inset-0 bg-black/10"></div>
-                </div>
-                
-                <div class="max-w-4xl relative z-10">
-                    <h2 id="hero-title" class="text-4xl md:text-7xl font-extrabold text-white mb-6 leading-tight drop-shadow-[0_5px_15px_rgba(0,0,0,0.6)]">Votre Partenaire de Voyage Complet</h2>
-                    <p id="hero-subtitle" class="text-lg md:text-2xl text-white mb-10 font-medium drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]">Omra, Hajj, Visas, Hôtels et Billetterie - L'excellence à chaque étape</p>
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                        <button onclick="showPage('offers')" class="bg-white text-sahab-blue px-10 py-4 rounded-full font-bold text-lg shadow-xl hover:scale-105 transition" id="hero-cta-1">Nos Offres Omra</button>
-                        <button onclick="showPage('contact')" class="bg-sahab-green text-white px-10 py-4 rounded-full font-bold text-lg shadow-xl hover:scale-105 transition" id="hero-cta-2">Autres Services</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section: OFFERS -->
-        <section id="offers" class="page-content pt-32 pb-20 px-6">
-            <div class="max-w-7xl mx-auto">
-                <div class="text-center mb-16">
-                    <h2 id="offers-title" class="text-4xl font-black text-sahab-blue mb-4">Offres Omra 2026</h2>
-                    <div class="h-1.5 w-20 bg-sahab-green mx-auto rounded-full"></div>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                    <!-- Offer 1 -->
-                    <div class="bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden group">
-                        <div class="h-56 overflow-hidden">
-                            <img src="https://i.ibb.co/JjGYRqyQ/image.png" alt="Omra Janvier 2026" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                        </div>
-                        <div class="p-8">
-                            <span class="text-xs font-bold text-sahab-green uppercase tracking-widest" id="tag-eco">Offre Économique</span>
-                            <h3 class="text-xl font-bold mt-2 mb-4" data-fr="Omra Janvier 2026" data-ar="عمرة يناير 2026">Omra Janvier 2026</h3>
-                            <p class="text-sm text-gray-500 mb-6" data-fr="Dates : du 03 au 15 jan. ou du 12 au 26 jan." data-ar="التواريخ: من 03 إلى 15 يناير أو من 12 إلى 26 يناير">Dates : du 03 au 15 janvier ou du 12 au 26 janvier</p>
-                            <button onclick="showPage('contact')" class="w-full py-3 bg-sahab-blue text-white rounded-xl font-bold hover:bg-sahab-green transition btn-more">En savoir plus</button>
-                        </div>
-                    </div>
-                    <!-- Offer 2 -->
-                    <div class="bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden group">
-                        <div class="h-56 overflow-hidden">
-                            <img src="https://i.ibb.co/Tys2mPw/image.png" alt="Omra Chaâbane 2026" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                        </div>
-                        <div class="p-8">
-                            <span class="text-xs font-bold text-sahab-blue uppercase tracking-widest" id="tag-pop">Populaire</span>
-                            <h3 class="text-xl font-bold mt-2 mb-4" data-fr="Omra Chaâbane 2026" data-ar="عمرة شعبان 2026">Omra Chaâbane 2026</h3>
-                            <p class="text-sm text-gray-500 mb-6" data-fr="Dates : du 26 janvier au 9 février" data-ar="التواريخ: من 26 يناير إلى 9 فبراير">Dates : du 26 يناير au 9 فبراير</p>
-                            <button onclick="showPage('contact')" class="w-full py-3 bg-sahab-blue text-white rounded-xl font-bold hover:bg-sahab-green transition btn-more">En savoir plus</button>
-                        </div>
-                    </div>
-                    <!-- Offer 3 -->
-                    <div class="bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden group">
-                        <div class="h-56 overflow-hidden">
-                            <img src="https://i.ibb.co/V04t0s1y/image.png" alt="Omra Ramadan 2026" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                        </div>
-                        <div class="p-8">
-                            <span class="text-xs font-bold text-purple-600 uppercase tracking-widest" id="tag-ram">Spécial Ramadan</span>
-                            <h3 class="text-xl font-bold mt-2 mb-4" data-fr="Omra Chaâbane & Ramadan" data-ar="عمرة شعبان ورمضان">Omra Chaâbane & Ramadan</h3>
-                            <p class="text-sm text-gray-500 mb-6" data-fr="Dates : du 03 au 23 février" data-ar="التواريخ: من 03 إلى 23 فبراير">Dates : du 03 au 23 فبراير</p>
-                            <button onclick="showPage('contact')" class="w-full py-3 bg-sahab-blue text-white rounded-xl font-bold hover:bg-sahab-green transition btn-more">En savoir plus</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section: ABOUT -->
-        <section id="about" class="page-content pt-32 pb-20 px-6">
-            <div class="max-w-4xl mx-auto flex flex-col items-center">
-                <div class="text-center mb-10">
-                    <h2 id="about-title" class="text-4xl font-black text-sahab-blue mb-4">À propos de nous</h2>
-                    <div class="h-1.5 w-20 bg-sahab-green mx-auto rounded-full"></div>
-                </div>
-                <div class="bg-white p-8 md:p-12 rounded-[3rem] shadow-xl text-center leading-relaxed">
-                    <p class="text-lg md:text-xl text-gray-700" id="about-content">
-                        Sahab Voyages est une agence dédiée à l'organisation de voyages spirituels. Notre mission est de vous accompagner avec déعوement lors de votre Omra et Hajj en vous offrant des services de haute qualité, une logistique irréprochable et un encadrement humain d'exception.
+        <!-- Section Accueil -->
+        <section id="home" class="page-section active-section">
+            <div class="hero-bg h-[90vh] flex items-center justify-center text-center px-6">
+                <div class="max-w-4xl bg-black/40 p-12 rounded-[3rem] backdrop-blur-lg border border-white/20">
+                    <h2 class="text-5xl md:text-8xl font-black text-white mb-6 tracking-tight">Sahab Voyages</h2>
+                    <p class="text-xl md:text-2xl text-gray-100 mb-12 font-medium translate-lang" data-key="hero-desc">
+                        Votre partenaire de confiance pour la Omra et les visas internationaux.
                     </p>
+                    <div class="flex flex-wrap justify-center gap-6">
+                        <button onclick="showSection('offers')" class="bg-sahab-blue hover:bg-blue-600 text-white px-12 py-5 rounded-full font-black text-xl transition-all hover:scale-105 shadow-2xl translate-lang" data-key="btn-offers">Voir nos offres</button>
+                        <a href="https://wa.me/212623945729" target="_blank" class="bg-sahab-green hover:bg-green-600 text-white px-12 py-5 rounded-full font-black text-xl transition-all hover:scale-105 shadow-2xl flex items-center gap-3">
+                            <i class="fab fa-whatsapp text-3xl"></i> <span class="translate-lang" data-key="btn-wa">WhatsApp</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Section: CONTACT -->
-        <section id="contact" class="page-content pt-32 pb-20 px-6">
-            <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <div>
-                    <h2 id="contact-title" class="text-4xl font-black text-sahab-blue mb-8">Contactez-nous</h2>
-                    <div class="space-y-6">
-                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                            <h4 class="font-bold text-lg mb-4 text-sahab-blue flex items-center gap-2">📞 <span data-fr="Téléphones" data-ar="أرقام الهاتف">Téléphones</span></h4>
-                            <div class="space-y-4">
-                                <a href="tel:+212522759167" class="flex items-center gap-3 text-gray-600 hover:text-sahab-blue transition group">
-                                    <span class="bg-blue-100 p-2 rounded-lg text-sahab-blue text-sm font-bold" data-fr="Fixe" data-ar="الهاتف الثابت">Fixe</span>
-                                    <span dir="ltr" class="font-semibold">+212 5 22 75 91 67</span>
-                                </a>
-                                <a href="tel:+212623945729" class="flex items-center gap-3 text-gray-600 hover:text-sahab-green transition group">
-                                    <span class="bg-green-100 p-2 rounded-lg text-sahab-green text-sm font-bold">WhatsApp</span>
-                                    <span dir="ltr" class="font-semibold">+212 6 23 94 57 29</span>
-                                </a>
-                                <a href="tel:+212666123893" class="flex items-center gap-3 text-gray-600 hover:text-sahab-green transition group">
-                                    <span class="bg-green-100 p-2 rounded-lg text-sahab-green text-sm font-bold" data-fr="Mobile" data-ar="الهاتف المحمول">Mobile</span>
-                                    <span dir="ltr" class="font-semibold">+212 6 66 12 38 93</span>
-                                </a>
-                            </div>
-                        </div>
+        <!-- Section Offres -->
+        <section id="offers" class="page-section py-24 px-6 max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl md:text-7xl font-black text-sahab-dark mb-6 translate-lang" data-key="offers-title">Nos Offres</h2>
+                <p class="text-xl text-gray-500 font-medium translate-lang" data-key="offers-sub">Découvrez nos meilleurs forfaits sélectionnés pour vous</p>
+                
+                <div class="flex flex-wrap justify-center gap-4 mt-12">
+                    <button onclick="filterOffers('all')" id="tab-all" class="tab-btn active px-10 py-4 rounded-full border-2 border-gray-200 font-bold transition translate-lang" data-key="filter-all">Toutes</button>
+                    <button onclick="filterOffers('omra')" id="tab-omra" class="tab-btn px-10 py-4 rounded-full border-2 border-gray-200 font-bold transition translate-lang" data-key="filter-omra">Omra</button>
+                    <button onclick="filterOffers('visa')" id="tab-visa" class="tab-btn px-10 py-4 rounded-full border-2 border-gray-200 font-bold transition translate-lang" data-key="filter-visa">Visas</button>
+                </div>
+            </div>
 
-                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                            <h4 class="font-bold text-lg mb-4 text-sahab-blue flex items-center gap-2">📧 <span data-fr="E-mails" data-ar="البريد الإلكتروني">E-mails</span></h4>
-                            <div class="space-y-3">
-                                <a href="mailto:agencesahab@gmail.com" class="flex items-center gap-3 text-gray-600 hover:text-sahab-blue transition font-medium underline">
-                                    <span>agencesahab@gmail.com</span>
-                                </a>
-                                <a href="mailto:sahabvoyagesvisa@gmail.com" class="flex items-center gap-3 text-gray-600 hover:text-sahab-blue transition font-medium underline">
-                                    <span>sahabvoyagesvisa@gmail.com</span>
-                                </a>
-                                <a href="mailto:sahabvoyagesbillet@gmail.com" class="flex items-center gap-3 text-gray-600 hover:text-sahab-blue transition font-medium underline">
-                                    <span>sahabvoyagesbillet@gmail.com</span>
-                                </a>
-                            </div>
-                        </div>
+            <div id="offersGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                
+                <!-- 1. Omra Janvier -->
+                <div class="offer-card omra bg-white rounded-[2.5rem] border border-gray-100 overflow-hidden flex flex-col shadow-sm">
+                    <div class="img-container"><img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766659933/%D8%B1%D8%AD%D9%84%D8%A9_%D9%8A%D9%86%D8%A7%D9%8A%D8%B1_zebgu6.png" alt="Omra Janvier"></div>
+                    <div class="p-10 flex-1 flex flex-col">
+                        <h3 class="font-black text-2xl mb-3 translate-lang" data-key="omra-jan-title">Omra Janvier 2026</h3>
+                        <p class="text-sahab-blue text-sm font-bold mb-8 italic"><i class="far fa-calendar-alt mr-2"></i>03 - 15 Jan / 12 - 26 Jan</p>
+                        <a href="https://wa.me/p/25709642965314217/212623945729" target="_blank" class="mt-auto w-full py-5 bg-sahab-blue text-white rounded-2xl font-black text-center hover:bg-blue-600 transition translate-lang" data-key="btn-more">En savoir plus</a>
+                    </div>
+                </div>
 
-                        <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-2xl">
-                            <div class="text-2xl">📍</div>
+                <!-- 2. Omra Chaabane -->
+                <div class="offer-card omra bg-white rounded-[2.5rem] border border-gray-100 overflow-hidden flex flex-col shadow-sm">
+                    <div class="img-container"><img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766659957/%D8%B9%D9%85%D8%B1%D8%A9_%D8%B4%D8%B9%D8%A8%D8%A7%D9%86_idphpj.png" alt="Omra Chaabane"></div>
+                    <div class="p-10 flex-1 flex flex-col">
+                        <h3 class="font-black text-2xl mb-3 translate-lang" data-key="omra-cha-title">Omra Chaâbane 2026</h3>
+                        <p class="text-sahab-blue text-sm font-bold mb-8 italic"><i class="far fa-calendar-alt mr-2"></i>26 Jan - 09 Fév</p>
+                        <a href="https://wa.me/p/25828021510116298/212623945729" target="_blank" class="mt-auto w-full py-5 bg-sahab-blue text-white rounded-2xl font-black text-center hover:bg-blue-600 transition translate-lang" data-key="btn-more">En savoir plus</a>
+                    </div>
+                </div>
+
+                <!-- 3. Omra Chaabane & Ramadan -->
+                <div class="offer-card omra bg-white rounded-[2.5rem] border border-gray-100 overflow-hidden flex flex-col shadow-sm">
+                    <div class="img-container"><img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766659933/%D8%B9%D9%85%D8%B1%D8%A9_%D8%B4%D8%B9%D8%A8%D8%A7%D9%86_%D9%88_%D8%B1%D9%85%D8%B6%D8%A7%D9%86_alq416.png" alt="Omra Chaabane & Ramadan"></div>
+                    <div class="p-10 flex-1 flex flex-col">
+                        <h3 class="font-black text-2xl mb-3 translate-lang" data-key="omra-charam-title">Omra Chaâbane & Ramadan 2026</h3>
+                        <p class="text-sahab-blue text-sm font-bold mb-8 italic"><i class="far fa-calendar-alt mr-2"></i>03 - 23 Février</p>
+                        <a href="https://wa.me/p/25953131680990622/212623945729" target="_blank" class="mt-auto w-full py-5 bg-sahab-blue text-white rounded-2xl font-black text-center hover:bg-blue-600 transition translate-lang" data-key="btn-more">En savoir plus</a>
+                    </div>
+                </div>
+
+                <!-- 4. Omra Ramadan -->
+                <div class="offer-card omra bg-white rounded-[2.5rem] border border-gray-100 overflow-hidden flex flex-col shadow-sm">
+                    <div class="img-container"><img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766757785/%D8%B9%D9%85%D8%B1%D8%A9_%D8%B1%D9%85%D8%B6%D8%A7%D9%86_lfum5k.jpg" alt="Omra Ramadan"></div>
+                    <div class="p-10 flex-1 flex flex-col">
+                        <h3 class="font-black text-2xl mb-3 translate-lang" data-key="omra-ram-title">Omra Ramadan 2026</h3>
+                        <p class="text-sahab-blue text-sm font-bold mb-8 italic"><i class="far fa-calendar-alt mr-2"></i>19 Fév - 24 Mars</p>
+                        <a href="https://wa.me/p/26571919809063840/212623945729" target="_blank" class="mt-auto w-full py-5 bg-sahab-blue text-white rounded-2xl font-black text-center hover:bg-blue-600 transition translate-lang" data-key="btn-more">En savoir plus</a>
+                    </div>
+                </div>
+
+                <!-- 5. Omra Shawwal -->
+                <div class="offer-card omra bg-white rounded-[2.5rem] border border-gray-100 overflow-hidden flex flex-col shadow-sm">
+                    <div class="img-container"><img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766757785/%D8%B9%D9%85%D8%B1%D8%A9_%D8%B4%D9%88%D8%A7%D9%84_d4rmgm.jpg" alt="Omra Shawwal"></div>
+                    <div class="p-10 flex-1 flex flex-col">
+                        <h3 class="font-black text-2xl mb-3 translate-lang" data-key="omra-shw-title">Omra Shawwal 2026</h3>
+                        <p class="text-sahab-blue text-sm font-bold mb-8 italic"><i class="far fa-calendar-alt mr-2"></i>28 Mars - 09 Avril</p>
+                        <a href="https://wa.me/p/32805010729147397/212623945729" target="_blank" class="mt-auto w-full py-5 bg-sahab-blue text-white rounded-2xl font-black text-center hover:bg-blue-600 transition translate-lang" data-key="btn-more">En savoir plus</a>
+                    </div>
+                </div>
+
+                <!-- Visa Qatar -->
+                <div class="offer-card visa bg-white rounded-[2.5rem] border border-gray-100 overflow-hidden flex flex-col shadow-sm">
+                    <div class="img-container"><img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766759278/Visa_Qatar_dk82xh.jpg" alt="Visa Qatar"></div>
+                    <div class="p-10 flex-1 flex flex-col">
+                        <h3 class="font-black text-2xl mb-3 translate-lang" data-key="visa-qatar-title">Visa État du Qatar</h3>
+                        <p class="text-gray-500 text-sm mb-8 translate-lang" data-key="btn-order-now">Commandez maintenant</p>
+                        <a href="https://wa.me/p/6504344723013509/212623945729" target="_blank" class="mt-auto w-full py-5 bg-sahab-green text-white rounded-2xl font-black text-center hover:bg-green-600 transition translate-lang" data-key="btn-order">Commander</a>
+                    </div>
+                </div>
+
+                <!-- Visa Saudi 4 jours -->
+                <div class="offer-card visa bg-white rounded-[2.5rem] border border-gray-100 overflow-hidden flex flex-col shadow-sm">
+                    <div class="img-container"><img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766759766/Visa_Saudi_pu1rai.jpg" alt="Visa Saudi 4"></div>
+                    <div class="p-10 flex-1 flex flex-col">
+                        <h3 class="font-black text-2xl mb-3 translate-lang" data-key="visa-saudi4-title">Visa Arabie Saoudite (4 jours)</h3>
+                        <p class="text-gray-500 text-sm mb-8 translate-lang" data-key="btn-order-now">Commandez maintenant</p>
+                        <a href="https://wa.me/p/6635789499807855/212623945729" target="_blank" class="mt-auto w-full py-5 bg-sahab-green text-white rounded-2xl font-black text-center hover:bg-green-600 transition translate-lang" data-key="btn-order">Commander</a>
+                    </div>
+                </div>
+
+                <!-- Visa Oman -->
+                <div class="offer-card visa bg-white rounded-[2.5rem] border border-gray-100 overflow-hidden flex flex-col shadow-sm">
+                    <div class="img-container"><img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766759773/Visa_Oman_kmaz4t.jpg" alt="Visa Oman"></div>
+                    <div class="p-10 flex-1 flex flex-col">
+                        <h3 class="font-black text-2xl mb-3 translate-lang" data-key="visa-oman-title">Visa Sultanat d'Oman</h3>
+                        <p class="text-gray-500 text-sm mb-8 translate-lang" data-key="btn-order-now">Commandez maintenant</p>
+                        <a href="https://wa.me/p/24198728483106864/212623945729" target="_blank" class="mt-auto w-full py-5 bg-sahab-green text-white rounded-2xl font-black text-center hover:bg-green-600 transition translate-lang" data-key="btn-order">Commander</a>
+                    </div>
+                </div>
+
+                <!-- Visa Bahrein -->
+                <div class="offer-card visa bg-white rounded-[2.5rem] border border-gray-100 overflow-hidden flex flex-col shadow-sm">
+                    <div class="img-container"><img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766759766/Visa_Bahrin_ojx0op.jpg" alt="Visa Bahrein"></div>
+                    <div class="p-10 flex-1 flex flex-col">
+                        <h3 class="font-black text-2xl mb-3 translate-lang" data-key="visa-bahrein-title">Visa Bahreïn</h3>
+                        <p class="text-gray-500 text-sm mb-8 translate-lang" data-key="btn-order-now">Commandez maintenant</p>
+                        <a href="https://wa.me/p/6527925420589249/212623945729" target="_blank" class="mt-auto w-full py-5 bg-sahab-green text-white rounded-2xl font-black text-center hover:bg-green-600 transition translate-lang" data-key="btn-order">Commander</a>
+                    </div>
+                </div>
+
+                <!-- Visa Saudi 365 -->
+                <div class="offer-card visa bg-white rounded-[2.5rem] border border-gray-100 overflow-hidden flex flex-col shadow-sm">
+                    <div class="img-container"><img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766759766/Visa_Saudi_365_rseaqk.jpg" alt="Visa Saudi 365"></div>
+                    <div class="p-10 flex-1 flex flex-col">
+                        <h3 class="font-black text-2xl mb-3 translate-lang" data-key="visa-saudi365-title">Visa Saudi 365 Jours</h3>
+                        <p class="text-gray-500 text-sm mb-8 translate-lang" data-key="btn-order-now">Commandez maintenant</p>
+                        <a href="https://wa.me/p/6635909943111318/212623945729" target="_blank" class="mt-auto w-full py-5 bg-sahab-green text-white rounded-2xl font-black text-center hover:bg-green-600 transition translate-lang" data-key="btn-order">Commander</a>
+                    </div>
+                </div>
+
+                <!-- Visa Mix -->
+                <div class="offer-card visa bg-white rounded-[2.5rem] border border-gray-100 overflow-hidden flex flex-col shadow-sm">
+                    <div class="img-container"><img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766759766/Qatar_-_Saudi_-_Bahrain_-_.._vu9tgy.jpg" alt="Visa Mix"></div>
+                    <div class="p-10 flex-1 flex flex-col">
+                        <h3 class="font-black text-2xl mb-3 translate-lang" data-key="visa-mix-title">Visa Mixte (Golfe)</h3>
+                        <p class="text-gray-500 text-sm mb-8 translate-lang" data-key="visa-mix-desc">UAE, Saudi, Qatar, Bahreïn, Oman.</p>
+                        <a href="https://wa.me/p/6655750361179310/212623945729" target="_blank" class="mt-auto w-full py-5 bg-sahab-green text-white rounded-2xl font-black text-center hover:bg-green-600 transition translate-lang" data-key="btn-order">Commander</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Section Contact -->
+        <section id="contact" class="page-section py-24 px-6 max-w-7xl mx-auto">
+            <h2 class="text-5xl font-black text-center mb-20 translate-lang" data-key="contact-title">Contactez-nous</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+                <div class="space-y-8">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Aml+4+Rue+27+N44+Bernoussi+Casablanca" target="_blank" class="group bg-white p-10 rounded-[2.5rem] border border-gray-100 shadow-sm flex items-center gap-8 transition-all hover:border-sahab-blue">
+                        <div class="w-20 h-20 bg-blue-50 text-sahab-blue flex items-center justify-center rounded-[1.5rem] text-3xl group-hover:bg-sahab-blue group-hover:text-white transition-all"><i class="fas fa-map-marker-alt"></i></div>
+                        <div>
+                            <h4 class="font-black text-xl translate-lang" data-key="info-address">Notre Adresse</h4>
+                            <p class="text-gray-500 font-medium">Aml 4, Rue 27, N°44, Bernoussi, Casablanca</p>
+                        </div>
+                    </a>
+                    
+                    <div class="bg-white p-10 rounded-[2.5rem] border border-gray-100 shadow-sm space-y-6">
+                        <div class="flex items-center gap-8">
+                            <div class="w-16 h-16 bg-sahab-blue text-white flex items-center justify-center rounded-2xl text-2xl"><i class="fas fa-phone-alt"></i></div>
                             <div>
-                                <h4 class="font-bold text-sahab-blue" data-fr="Adresse" data-ar="العنوان">Adresse</h4>
-                                <p class="text-gray-600 font-medium" data-fr="Aml 4, Rue 27, N°44, Bernoussi, Casablanca, Maroc" data-ar="أمل 4، زنقة 27، رقم 44، البرنوصي، الدار البيضاء، المغرب">Aml 4, Rue 27, N°44, Bernoussi, Casablanca, Maroc</p>
+                                <h4 class="font-black translate-lang" data-key="info-phones">Téléphones</h4>
+                                <div class="flex flex-col gap-1 font-bold text-gray-600" dir="ltr">
+                                    <a href="tel:+212666249978" class="contact-link">+212 666-249978</a>
+                                    <a href="tel:+212666123893" class="contact-link">+212 666-123893</a>
+                                    <a href="tel:+212623945729" class="contact-link">+212 623-945729</a>
+                                    <a href="tel:+212522759167" class="contact-link text-sm text-gray-400">+212 522-759167 (Fixe)</a>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="border-gray-50">
+                        <div class="flex items-center gap-8">
+                            <div class="w-16 h-16 bg-red-50 text-red-500 flex items-center justify-center rounded-2xl text-2xl"><i class="fas fa-envelope"></i></div>
+                            <div>
+                                <h4 class="font-black translate-lang" data-key="info-email">Email</h4>
+                                <a href="mailto:sahabvoyages@gmail.com" class="font-bold text-gray-600 contact-link">sahabvoyages@gmail.com</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="h-96 lg:h-full min-h-[400px] rounded-3xl overflow-hidden shadow-xl border-4 border-white">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3323.086364124976!2d-7.5023!3d33.6012!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDM2JzA0LjMiTiA3wrAzMCcwOC4zIlc!5e0!3m2!1sfr!2sma!4v1710000000000!5m2!1sfr!2sma" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+
+                <div class="rounded-[3rem] overflow-hidden shadow-2xl h-[550px] border-8 border-white sticky top-28">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3323.0805166297314!2d-7.50495802422247!3d33.60271547333038!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xda7cb08f62c038d%3A0x600b65620958117a!2sSidi%20Bernoussi%2C%20Casablanca!5e0!3m2!1sfr!2sma!4v1710000000000" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
         </section>
-
-    </div>
+    </main>
 
     <!-- Footer -->
-    <footer class="bg-slate-900 text-white pt-20 pb-10 px-6 mt-12">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-            <div class="col-span-1 lg:col-span-2">
-                <div class="flex items-center gap-4 mb-6">
-                    <img src="https://i.ibb.co/TxW2mLGy/logo.png" alt="Sahab Voyages" class="w-32 h-auto object-contain brightness-110">
+    <footer class="bg-sahab-dark text-white pt-24 pb-12 px-6">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16 mb-24">
+            <div class="text-center md:text-left">
+                <img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766748193/LOGO_SAHAB_cr3qjr.png" class="h-20 mb-10 mx-auto md:mx-0 brightness-125">
+                <p class="text-gray-400 text-sm leading-relaxed max-w-sm translate-lang" data-key="footer-desc">
+                    L'agence Sahab Voyages vous accompagne dans vos voyages spirituels et touristiques avec les plus hauts standards de qualité et de professionnalisme.
+                </p>
+            </div>
+            
+            <div class="text-center">
+                <h4 class="font-black text-2xl mb-10 translate-lang" data-key="footer-social">Réseaux Sociaux</h4>
+                <div class="flex justify-center gap-6">
+                    <a href="https://www.instagram.com/sahabvoyages?igsh=NTk2d3F2Z3R5bGJp" target="_blank" class="w-16 h-16 rounded-3xl bg-white/5 flex items-center justify-center text-3xl hover:bg-sahab-blue transition-all border border-white/10 hover:-translate-y-2"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/212623945729" target="_blank" class="w-16 h-16 rounded-3xl bg-white/5 flex items-center justify-center text-3xl hover:bg-sahab-green transition-all border border-white/10 hover:-translate-y-2"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:sahabvoyages@gmail.com" class="w-16 h-16 rounded-3xl bg-white/5 flex items-center justify-center text-3xl hover:bg-red-500 transition-all border border-white/10 hover:-translate-y-2"><i class="fas fa-envelope"></i></a>
                 </div>
-                <p class="text-slate-400 text-sm max-w-sm" id="footer-desc">Spécialiste du voyage religieux à Casablanca. Nous nous engageons à offrir une expérience spirituelle sereine et encadrée à tous nos pèlerins.</p>
             </div>
-            <div>
-                <h4 class="font-bold mb-6 text-blue-400 uppercase text-xs tracking-widest" data-fr="Liens rapides" data-ar="روابط سريعة">Liens rapides</h4>
-                <ul class="space-y-3 text-slate-300 text-sm font-medium">
-                    <li><button onclick="showPage('offers')" class="hover:text-white transition" data-fr="Nos Offres" data-ar="عروضنا">Nos Offres</button></li>
-                    <li><button onclick="showPage('about')" class="hover:text-white transition" data-fr="À propos" data-ar="من نحن">À propos</button></li>
-                    <li><button onclick="showPage('contact')" class="hover:text-white transition" data-fr="Contactez-nous" data-ar="اتصل بنا">Contactez-nous</button></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="font-bold mb-6 text-blue-400 uppercase text-xs tracking-widest" data-fr="Contact Direct" data-ar="اتصال مباشر">Contact Direct</h4>
-                <div class="text-slate-300 text-xs space-y-3">
-                    <p><a href="tel:+212522759167" class="hover:text-white flex items-center gap-2">📞 +212 522-75-91-67</a></p>
-                    <p><a href="tel:+212623945729" class="hover:text-white flex items-center gap-2">📱 +212 623-94-57-29</a></p>
-                    <p><a href="mailto:agencesahab@gmail.com" class="hover:text-white underline block mt-2">agencesahab@gmail.com</a></p>
+
+            <div class="text-center md:text-right">
+                <h4 class="font-black text-2xl mb-10 translate-lang" data-key="footer-contact">Contact Rapide</h4>
+                <div class="space-y-4 text-gray-400 font-medium">
+                    <a href="tel:+212623945729" class="block hover:text-white transition" dir="ltr">+212 623-945729 <i class="fab fa-whatsapp ml-3 text-sahab-green"></i></a>
+                    <a href="tel:+212522759167" class="block hover:text-white transition" dir="ltr">+212 522-759167 <i class="fas fa-phone-alt ml-3"></i></a>
+                    <a href="mailto:sahabvoyages@gmail.com" class="block hover:text-white transition">sahabvoyages@gmail.com <i class="fas fa-at ml-3"></i></a>
+                    <p class="text-xs uppercase tracking-wider mt-6">Aml 4, Rue 27, N°44, Bernoussi <i class="fas fa-map-pin ml-3"></i></p>
                 </div>
             </div>
         </div>
-        <div class="text-center pt-8 border-t border-slate-800 text-[10px] text-slate-500 uppercase tracking-widest font-bold" id="copyright">
-            © 2026 Sahab Voyages. Excellence & Spiritualité.
+        <div class="border-t border-white/5 pt-12 text-center text-[11px] text-gray-600 font-black uppercase tracking-[0.6em]">
+            © 2026 Sahab Voyages - Tous droits réservés
         </div>
     </footer>
 
-    <!-- Floating Action -->
-    <div class="fixed bottom-6 right-6 flex flex-col gap-4 z-50">
-        <a href="https://wa.me/212623945729" target="_blank" class="w-16 h-16 bg-sahab-green text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition float-wa text-3xl">
-            <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M12.031 6.172c-2.32 0-4.591.562-6.563 1.632l-.469.25-3.328-.875.891 3.25-.281.438c-1.141 1.844-1.75 3.969-1.75 6.156 0 6.141 5.016 11.141 11.156 11.141 2.453 0 4.813-.813 6.781-2.328l.5-.391 4 1.047-1.063-3.891.359-.578c1.375-2.203 2.109-4.734 2.109-7.375 0-7.859-6.391-14.234-14.25-14.234h-.016zm6.813 18.047c-1.922 1.406-4.219 2.156-6.594 2.156-6.438 0-11.688-5.25-11.688-11.688 0-2.141.578-4.219 1.688-6.047l-.016-.016-1.125-4.109 4.234 1.109c1.781-.953 3.797-1.453 5.859-1.453h.016c7.5 0 13.594 6.094 13.594 13.594 0 2.531-.703 5.016-2.031 7.156l-.016.031 1.094 4.016-4.016-1.047zM16.734 18.5c-.266-.141-1.578-.781-1.813-.859-.25-.094-.422-.141-.594.141-.188.266-.688.859-.844 1.047-.141.188-.313.219-.578.078-.266-.141-1.125-.422-2.141-1.328-.797-.703-1.328-1.578-1.484-1.844-.172-.266-.016-.422.125-.563.125-.125.266-.313.406-.469.125-.156.172-.266.25-.438.078-.172.047-.313-.016-.438-.078-.172.047-.313-.016-.438-.078-.141-.594-1.422-.813-1.953-.219-.531-.438-.453-.594-.469-.156-.016-.328-.016-.5-.016s-.453.063-.688.313c-.25.25-.938.922-.938 2.25s.969 2.609 1.109 2.797c.141.188 1.906 2.906 4.609 4.078.656.281 1.156.453 1.547.578.656.203 1.25.172 1.719.109.516-.078 1.578-.641 1.813-1.266.219-.625.219-1.156.156-1.266-.063-.109-.25-.172-.516-.313z"></path></svg>
-        </a>
-    </div>
-
-    <!-- Script: Logic -->
     <script>
         let currentLang = 'fr';
 
-        const translations = {
+        const i18n = {
             fr: {
-                brand: { name: "Sahab Voyages", tagline: "Excellence & Spiritualité" },
-                nav: { home: 'Accueil', about: 'À propos', offers: 'Offres Omra', contact: 'Contact' },
-                hero: { title: "Votre Partenaire de Voyage Complet", subtitle: "Omra, Hajj, Visas, Hôtels et Billetterie - L'excellence à chaque étape", cta1: "Nos Offres Omra", cta2: "Autres Services" },
-                offers: { title: "Offres Omra 2026", eco: "Offre Économique", pop: "Populaire", ram: "Spécial Ramadan", more: "En savoir plus" },
-                about: { title: "À propos de nous", content: "Sahab Voyages est une agence dédiée à l'organisation de voyages spirituels. Notre mission est de vous accompagner avec dévouement lors de votre Omra et Hajj en vous offrant des services de haute qualité, une logistique irréprochable et un encadrement humain d'exception." },
-                contact: { title: "Contactez-nous" },
-                footer: { desc: "Spécialiste du voyage religieux à Casablanca. Nous nous engageons à offrir une expérience spirituelle sereine et encadrée à tous nos pèlerins.", copyright: "© 2026 أسفار سحاب - Sahab Voyages. جميع الحقوق محفوظة." }
+                "nav-home": "Accueil", "nav-offers": "Nos Offres", "nav-contact": "Contact", "nav-sub": "L'excellence du voyage",
+                "hero-desc": "Votre partenaire de confiance pour la Omra et les visas internationaux.",
+                "btn-offers": "Voir nos offres", "btn-wa": "WhatsApp",
+                "offers-title": "Nos Offres", "offers-sub": "Découvrez nos meilleurs forfaits sélectionnés pour vous",
+                "filter-all": "Toutes", "filter-omra": "Omra", "filter-visa": "Visas",
+                "btn-more": "En savoir plus", "btn-order": "Commander", "btn-order-now": "Commandez maintenant",
+                "contact-title": "Contactez-nous", "info-address": "Notre Adresse", "info-phones": "Téléphones", "info-email": "Email",
+                "footer-desc": "L'agence Sahab Voyages vous accompagne dans vos voyages spirituels et touristiques avec les plus hauts standards de qualité.",
+                "footer-social": "Réseaux Sociaux", "footer-contact": "Contact Rapide",
+                "omra-jan-title": "Omra Janvier 2026", "omra-cha-title": "Omra Chaâbane 2026", "omra-charam-title": "Omra Chaâbane & Ramadan", "omra-ram-title": "Omra Ramadan 2026", "omra-shw-title": "Omra Shawwal 2026",
+                "visa-qatar-title": "Visa État du Qatar", "visa-saudi4-title": "Visa Arabie Saoudite (4j)", "visa-oman-title": "Visa Sultanat d'Oman", "visa-bahrein-title": "Visa Bahreïn", "visa-saudi365-title": "Visa Saudi Multi 365j", "visa-mix-title": "Visa Mixte (Golfe)", "visa-mix-desc": "UAE, Saudi, Qatar, Bahreïn, Oman."
             },
             ar: {
-                brand: { name: "أسفار سحاب", tagline: "تميز و روحانية" },
-                nav: { home: 'الرئيسية', about: 'من نحن', offers: 'عروض العمرة', contact: 'اتصل بنا' },
-                hero: { title: "شريككم المتكامل في السفر", subtitle: "عمرة، حج، تأشيرات، فنادق وتذاكر طيران - التميز في كل خطوة", cta1: "عروض العمرة", cta2: "خدمات أخرى" },
-                offers: { title: "عروض العمرة 2026", eco: "عرض اقتصادي", pop: "الأكثر طلباً", ram: "خاص برمضان", more: "اكتشف المزيد" },
-                about: { title: "من نحن", content: "أسفار سحاب هي وكالة متخصصة في تنظيم الرحلات الروحانية. مهمتنا هي مرافقتكم بتفانٍ خلال مناسك العمرة والحج من خلال تقديم خدمات عالية الجودة، ولوجستيات متكاملة، وتأطير إنساني متميز يضمن لكم السكينة." },
-                contact: { title: "اتصل بنا" },
-                footer: { desc: "متخصصون في الرحلات الدينية بالدار البيضاء. نلتزم بتقديم تجربة روحانية هادئة ومنظمة لجميع ضيوف الرحمن.", copyright: "© 2026 أسفار سحاب. تميز وروحانية." }
+                "nav-home": "الرئيسية", "nav-offers": "عروضنا", "nav-contact": "اتصل بنا", "nav-sub": "التميز في السفر",
+                "hero-desc": "شريككم الموثوق لرحلات العمرة والتأشيرات الدولية بأفضل الأسعار.",
+                "btn-offers": "مشاهدة العروض", "btn-wa": "واتساب",
+                "offers-title": "عروضنا الحالية", "offers-sub": "اكتشف أفضل الباقات المختارة بعناية من أجل ضيوف الرحمن",
+                "filter-all": "الكل", "filter-omra": "العمرة", "filter-visa": "التأشيرات",
+                "btn-more": "تفاصيل أكثر", "btn-order": "اطلب الآن", "btn-order-now": "اطلب التأشيرة الآن",
+                "contact-title": "تواصلوا معنا", "info-address": "عنوان الوكالة", "info-phones": "أرقام الهاتف", "info-email": "البريد الإلكتروني",
+                "footer-desc": "وكالة سحاب فواياج ترافقكم في رحلاتكم الإيمانية والسياحية بأعلى معايير الجودة والاحترافية والالتزام.",
+                "footer-social": "تواصل اجتماعي", "footer-contact": "اتصال سريع",
+                "omra-jan-title": "عمرة يناير 2026", "omra-cha-title": "عمرة شعبان 2026", "omra-charam-title": "عمرة شعبان و رمضان", "omra-ram-title": "عمرة رمضان 2026", "omra-shw-title": "عمرة شوال 2026",
+                "visa-qatar-title": "تأشيرة دولة قطر", "visa-saudi4-title": "تأشيرة السعودية (4 أيام)", "visa-oman-title": "تأشيرة سلطنة عمان", "visa-bahrein-title": "تأشيرة البحرين", "visa-saudi365-title": "تأشيرة السعودية 365 يوم", "visa-mix-title": "تأشيرة دول الخليج", "visa-mix-desc": "الإمارات، السعودية، قطر، البحرين، عمان."
             }
         };
 
-        function showPage(pageId) {
-            document.querySelectorAll('.page-content').forEach(p => p.classList.remove('page-active'));
-            const target = document.getElementById(pageId);
-            if(target) target.classList.add('page-active');
-            
-            document.getElementById('mobile-menu').classList.add('hidden');
+        function showSection(id) {
+            document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active-section'));
+            document.getElementById(id).classList.add('active-section');
+            document.getElementById('mobileMenu').classList.add('hidden');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function toggleMobileMenu() {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
+            document.getElementById('mobileMenu').classList.toggle('hidden');
         }
 
-        function toggleLanguage() {
+        function filterOffers(cat) {
+            const cards = document.querySelectorAll('.offer-card');
+            const btns = document.querySelectorAll('.tab-btn');
+            btns.forEach(b => b.classList.remove('active'));
+            document.getElementById(`tab-${cat}`).classList.add('active');
+            cards.forEach(c => {
+                if (cat === 'all') c.style.display = 'flex';
+                else c.style.display = c.classList.contains(cat) ? 'flex' : 'none';
+            });
+        }
+
+        function toggleLang() {
             currentLang = currentLang === 'fr' ? 'ar' : 'fr';
-            updateUI();
+            updateContent();
         }
 
-        function updateUI() {
-            const t = translations[currentLang];
-            const isRtl = currentLang === 'ar';
+        function updateContent() {
+            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+            document.body.classList.toggle('rtl', currentLang === 'ar');
+            document.getElementById('langBtn').innerText = currentLang === 'fr' ? 'العربية' : 'Français';
             
-            document.documentElement.dir = isRtl ? 'rtl' : 'ltr';
-            document.documentElement.lang = currentLang;
-            document.body.classList.toggle('rtl', isRtl);
-            
-            // Language Button Text
-            document.getElementById('lang-btn').innerText = currentLang === 'fr' ? 'العربية' : 'Français';
-            
-            // Brand
-            document.getElementById('brand-name').innerText = t.brand.name;
-            document.getElementById('brand-tagline').innerText = t.brand.tagline;
-
-            // Nav
-            document.querySelectorAll('[data-key]').forEach(el => {
+            document.querySelectorAll('.translate-lang').forEach(el => {
                 const key = el.getAttribute('data-key');
-                if (t.nav[key]) el.innerText = t.nav[key];
-            });
-
-            // Hero
-            document.getElementById('hero-title').innerText = t.hero.title;
-            document.getElementById('hero-subtitle').innerText = t.hero.subtitle;
-            document.getElementById('hero-cta-1').innerText = t.hero.cta1;
-            document.getElementById('hero-cta-2').innerText = t.hero.cta2;
-
-            // Offers
-            document.getElementById('offers-title').innerText = t.offers.title;
-            document.getElementById('tag-eco').innerText = t.offers.eco;
-            document.getElementById('tag-pop').innerText = t.offers.pop;
-            document.getElementById('tag-ram').innerText = t.offers.ram;
-            document.querySelectorAll('.btn-more').forEach(btn => btn.innerText = t.offers.more);
-            
-            // About
-            document.getElementById('about-title').innerText = t.about.title;
-            document.getElementById('about-content').innerText = t.about.content;
-
-            // Contact
-            document.getElementById('contact-title').innerText = t.contact.title;
-
-            // Footer
-            document.getElementById('footer-desc').innerText = t.footer.desc;
-            document.getElementById('copyright').innerText = t.footer.copyright;
-
-            // Global Data attributes for items not manually linked
-            document.querySelectorAll('[data-fr][data-ar]').forEach(el => {
-                el.innerText = el.getAttribute(`data-${currentLang}`);
+                if (i18n[currentLang][key]) {
+                    el.innerText = i18n[currentLang][key];
+                }
             });
         }
 
-        // Init
-        updateUI();
+        window.onload = updateContent;
     </script>
 </body>
 </html>
