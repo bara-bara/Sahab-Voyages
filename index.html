@@ -93,16 +93,46 @@
         .promotion-banner { width: 100%; overflow: hidden; }
         .promotion-banner img { width: 100%; height: auto; display: block; }
 
+        /* تعديل كادر وصور المعتمرات لتكون كبيرة وواضحة */
         .client-photo-card {
-            border-radius: 24px;
+            border-radius: 30px;
             overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            transition: all 0.4s ease;
-            border: 4px solid #fff;
+            box-shadow: 0 15px 45px rgba(0,0,0,0.12);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 8px solid #fff;
+            position: relative;
+            background: white;
         }
+        
+        /* إطار ذهبي رقيق حول الصورة */
+        .client-photo-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 2px solid var(--sahab-gold);
+            border-radius: 22px;
+            pointer-events: none;
+            opacity: 0.6;
+            margin: 4px;
+        }
+
         .client-photo-card:hover {
-            transform: scale(1.03) translateY(-5px);
-            box-shadow: 0 12px 30px rgba(0,61,165,0.2);
+            transform: scale(1.05);
+            box-shadow: 0 25px 60px rgba(197, 160, 89, 0.3);
+            border-color: var(--sahab-gold);
+            z-index: 10;
+        }
+
+        .client-photo-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .client-photo-card:hover img {
+            transform: scale(1.1);
         }
     </style>
 </head>
@@ -145,24 +175,24 @@
                 </div>
             </div>
 
-            <!-- Clients Gallery Section -->
-            <div class="py-16 bg-gradient-to-b from-white to-slate-50 px-6">
+            <!-- معرض صور المعتمرات - تكبير الصور وتحسين العرض -->
+            <div class="py-24 bg-gradient-to-b from-white to-slate-100 px-6">
                 <div class="max-w-7xl mx-auto text-center">
-                    <h2 class="text-3xl md:text-4xl font-black mb-2 text-blue-900 translate-lang" data-key="gallery-title">Entrez… et ressentez l’instant</h2>
-                    <p class="text-lg md:text-xl text-gray-600 font-medium mb-12 translate-lang" data-key="gallery-sub">Des moments rares de nos voyages spirituels</p>
+                    <h2 class="text-4xl md:text-6xl font-black mb-4 text-blue-900 translate-lang" data-key="gallery-title">Entrez… et ressentez l’instant</h2>
+                    <p class="text-xl md:text-2xl text-gray-600 font-medium mb-16 translate-lang" data-key="gallery-sub">Des moments rares de nos voyages spirituels</p>
                     
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-14 px-4">
                         <div class="client-photo-card">
-                            <img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766771737/PHOTO-2_drs1nb.jpg" alt="Client 1" class="w-full h-full object-cover aspect-[4/5]">
+                            <img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766771737/PHOTO-2_drs1nb.jpg" alt="Client 1" class="w-full">
                         </div>
                         <div class="client-photo-card">
-                            <img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766771737/PHOTO-1_bioqpk.jpg" alt="Client 2" class="w-full h-full object-cover aspect-[4/5]">
+                            <img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766771737/PHOTO-1_bioqpk.jpg" alt="Client 2" class="w-full">
                         </div>
                         <div class="client-photo-card">
-                            <img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766771737/LOGO-4_sdekyk.jpg" alt="Client 3" class="w-full h-full object-cover aspect-[4/5]">
+                            <img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766771737/LOGO-4_sdekyk.jpg" alt="Client 3" class="w-full">
                         </div>
                         <div class="client-photo-card">
-                            <img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766771745/PHOTO-3_fzimde.jpg" alt="Client 4" class="w-full h-full object-cover aspect-[4/5]">
+                            <img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766771745/PHOTO-3_fzimde.jpg" alt="Client 4" class="w-full">
                         </div>
                     </div>
                 </div>
@@ -191,7 +221,7 @@
                     <div class="offer-card" data-cat="omra">
                         <div class="image-container"><img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766659933/%D8%B1%D8%AD%D9%84%D8%A9_%D9%8A%D9%86%D8%A7%D9%8A%D8%B1_zebgu6.png" alt="Omra Janvier"></div>
                         <div class="p-8 flex flex-col flex-grow">
-                            <h3 class="text-2xl font-black mb-2 translate-lang" data-key="o1-t">Omra Janvier 2026 (offre économique)</h3>
+                            <h3 class="text-2xl font-black mb-2 translate-lang" data-key="o1-t">Omra Janvier 2026 (Économique)</h3>
                             <p class="text-blue-600 font-bold mb-6 translate-lang" data-key="o1-d">du 03 au 15 janvier ou du 12 au 26 janvier</p>
                             <a href="https://wa.me/p/25709642965314217/212623945729" target="_blank" class="btn-action translate-lang" data-key="btn-more">En savoir plus</a>
                         </div>
@@ -241,7 +271,7 @@
                     <div class="offer-card" data-cat="visa">
                         <div class="image-container"><img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766759278/Visa_Qatar_dk82xh.jpg" alt="Visa Qatar"></div>
                         <div class="p-8 flex flex-col flex-grow">
-                            <h3 class="text-2xl font-black mb-2 translate-lang" data-key="v1-t">Visa électronique pour l'État du Qatar</h3>
+                            <h3 class="text-2xl font-black mb-2 translate-lang" data-key="v1-t">E-Visa État du Qatar</h3>
                             <p class="text-blue-800 font-bold mb-6 translate-lang" data-key="v-sub">Commandez maintenant</p>
                             <a href="https://wa.me/p/6504344723013509/212623945729" target="_blank" class="btn-action btn-visa translate-lang" data-key="btn-order">Commander</a>
                         </div>
@@ -251,7 +281,7 @@
                     <div class="offer-card" data-cat="visa">
                         <div class="image-container"><img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766759766/Visa_Saudi_pu1rai.jpg" alt="Visa Saudi 4j"></div>
                         <div class="p-8 flex flex-col flex-grow">
-                            <h3 class="text-2xl font-black mb-2 translate-lang" data-key="v2-t">Visa de 4 jours pour l'Arabie saoudite</h3>
+                            <h3 class="text-2xl font-black mb-2 translate-lang" data-key="v2-t">Visa Saudi (4 jours)</h3>
                             <p class="text-blue-800 font-bold mb-6 translate-lang" data-key="v-sub">Commandez maintenant</p>
                             <a href="https://wa.me/p/6635789499807855/212623945729" target="_blank" class="btn-action btn-visa translate-lang" data-key="btn-order">Commander</a>
                         </div>
@@ -261,37 +291,37 @@
                     <div class="offer-card" data-cat="visa">
                         <div class="image-container"><img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766759773/Visa_Oman_kmaz4t.jpg" alt="Visa Oman"></div>
                         <div class="p-8 flex flex-col flex-grow">
-                            <h3 class="text-2xl font-black mb-2 translate-lang" data-key="v3-t">Visa électronique pour Oman</h3>
+                            <h3 class="text-2xl font-black mb-2 translate-lang" data-key="v3-t">E-Visa Oman</h3>
                             <p class="text-blue-800 font-bold mb-6 translate-lang" data-key="v-sub">Commandez maintenant</p>
                             <a href="https://wa.me/p/24198728483106864/212623945729" target="_blank" class="btn-action btn-visa translate-lang" data-key="btn-order">Commander</a>
                         </div>
                     </div>
 
-                    <!-- Visa Bahreïn (New) -->
+                    <!-- Visa Bahreïn -->
                     <div class="offer-card" data-cat="visa">
                         <div class="image-container"><img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766759766/Visa_Bahrin_ojx0op.jpg" alt="Visa Bahreïn"></div>
                         <div class="p-8 flex flex-col flex-grow">
-                            <h3 class="text-2xl font-black mb-2 translate-lang" data-key="v4-t">Visa électronique pour Bahreïn</h3>
+                            <h3 class="text-2xl font-black mb-2 translate-lang" data-key="v4-t">E-Visa Bahreïn</h3>
                             <p class="text-blue-800 font-bold mb-6 translate-lang" data-key="v-sub">Commandez maintenant</p>
                             <a href="https://wa.me/p/6527925420589249/212623945729" target="_blank" class="btn-action btn-visa translate-lang" data-key="btn-order">Commander</a>
                         </div>
                     </div>
 
-                    <!-- Visa Saudi 365 (New) -->
+                    <!-- Visa Saudi 365 -->
                     <div class="offer-card" data-cat="visa">
                         <div class="image-container"><img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766759766/Visa_Saudi_365_rseaqk.jpg" alt="Visa Saudi 365"></div>
                         <div class="p-8 flex flex-col flex-grow">
-                            <h3 class="text-2xl font-black mb-2 translate-lang" data-key="v5-t">Visa électronique pour l'Arabie saoudite (365 jours)</h3>
+                            <h3 class="text-2xl font-black mb-2 translate-lang" data-key="v5-t">E-Visa Saudi (365 jours)</h3>
                             <p class="text-blue-800 font-bold mb-6 translate-lang" data-key="v-sub">Commandez maintenant</p>
                             <a href="https://wa.me/p/6635909943111318/212623945729" target="_blank" class="btn-action btn-visa translate-lang" data-key="btn-order">Commander</a>
                         </div>
                     </div>
 
-                    <!-- Combined Gulf Visa (New) -->
+                    <!-- Combined Gulf Visa -->
                     <div class="offer-card" data-cat="visa">
                         <div class="image-container"><img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766759766/Qatar_-_Saudi_-_Bahrain_-_.._vu9tgy.jpg" alt="Gulf Visas"></div>
                         <div class="p-8 flex flex-col flex-grow">
-                            <h3 class="text-2xl font-black mb-2 translate-lang" data-key="v6-t">Visa EAU, Arabie, Qatar, Bahreïn et Oman</h3>
+                            <h3 class="text-2xl font-black mb-2 translate-lang" data-key="v6-t">E-Visa pays du Golfe</h3>
                             <p class="text-blue-800 font-bold mb-6 translate-lang" data-key="v-sub">Commandez maintenant</p>
                             <a href="https://wa.me/p/6655750361179310/212623945729" target="_blank" class="btn-action btn-visa translate-lang" data-key="btn-order">Commander</a>
                         </div>
