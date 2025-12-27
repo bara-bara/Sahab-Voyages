@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sahab Voyages | Excellence & Voyage</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
@@ -14,8 +14,9 @@
             --sahab-gold: #c5a059;
         }
         body { font-family: 'Montserrat', sans-serif; background-color: #ffffff; scroll-behavior: smooth; }
-        .rtl { font-family: 'Cairo', sans-serif; direction: rtl; }
         
+        .nav-logo { height: 110px; width: auto; }
+
         .hero-section {
             background-image: url('https://res.cloudinary.com/dkusr0hu1/image/upload/WhatsApp_Image_2025-12-25_at_10.55.21_yrxybi');
             background-size: cover;
@@ -30,24 +31,18 @@
         .hero-overlay {
             position: absolute;
             inset: 0;
-            background: rgba(0, 0, 0, 0.15);
+            background: rgba(0, 0, 0, 0.2);
         }
-
-        .nav-logo { height: 110px; width: auto; transition: transform 0.3s; }
-        .nav-logo:hover { transform: scale(1.05); }
 
         .offer-card {
             background: white;
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            transition: 0.3s;
-            border: 1px solid #f0f0f0;
             display: flex;
             flex-direction: column;
             height: 100%;
         }
-        .offer-card:hover { transform: translateY(-10px); box-shadow: 0 15px 40px rgba(0,0,0,0.15); }
 
         .image-container {
             width: 100%;
@@ -71,40 +66,20 @@
             font-weight: 800;
             display: block;
             margin-top: auto;
-            transition: 0.3s;
         }
-        .btn-visa { background-color: var(--sahab-blue); }
-
-        .section-tab {
-            cursor: pointer;
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-weight: 800;
-            transition: 0.3s;
-        }
-        .active-tab { background: var(--sahab-blue); color: white; }
 
         .page-section { display: none; }
         .active-section { display: block; }
 
-        .schedule-grid { display: grid; gap: 8px; font-size: 0.9rem; }
-        .schedule-row { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 4px; }
-        
-        .promotion-banner { width: 100%; overflow: hidden; }
-        .promotion-banner img { width: 100%; height: auto; display: block; }
-
-        /* تعديل كادر وصور المعتمرات لتكون كبيرة وواضحة */
+        /* Style for Client Photos (Untouched Frame) */
         .client-photo-card {
             border-radius: 30px;
             overflow: hidden;
             box-shadow: 0 15px 45px rgba(0,0,0,0.12);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             border: 8px solid #fff;
             position: relative;
             background: white;
         }
-        
-        /* إطار ذهبي رقيق حول الصورة */
         .client-photo-card::after {
             content: '';
             position: absolute;
@@ -116,27 +91,28 @@
             margin: 4px;
         }
 
-        .client-photo-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 25px 60px rgba(197, 160, 89, 0.3);
-            border-color: var(--sahab-gold);
-            z-index: 10;
+        .casablanca-link {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--sahab-blue);
+            transition: 0.3s;
         }
+        .casablanca-link:hover { transform: scale(1.02); color: #003080; }
 
-        .client-photo-card img {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
-            transition: transform 0.5s ease;
+        .contact-btn {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            border-radius: 20px;
+            font-weight: 800;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
-
-        .client-photo-card:hover img {
-            transform: scale(1.1);
-        }
+        .contact-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
     </style>
 </head>
-<body class="text-gray-900">
+<body>
 
     <!-- Navigation -->
     <nav class="bg-white/95 backdrop-blur-md shadow-md fixed top-0 w-full z-50">
@@ -146,61 +122,104 @@
             </div>
             
             <div class="hidden md:flex gap-10 font-bold items-center text-lg">
-                <button onclick="showSection('home')" class="hover:text-blue-700 translate-lang" data-key="nav-home">Accueil</button>
-                <button onclick="showSection('offers')" class="hover:text-blue-700 translate-lang" data-key="nav-offers">Nos Offres</button>
-                <button onclick="showSection('contact')" class="hover:text-blue-700 translate-lang" data-key="nav-contact">Contact</button>
-                <button onclick="toggleLang()" class="bg-blue-800 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition" id="langBtn">العربية</button>
+                <button onclick="showSection('home')" class="hover:text-blue-700">Accueil</button>
+                <button onclick="showSection('about')" class="hover:text-blue-700">À Propos</button>
+                <button onclick="showSection('offers')" class="hover:text-blue-700">Nos Offres</button>
+                <button onclick="showSection('contact')" class="hover:text-blue-700">Contact</button>
             </div>
             
             <button class="md:hidden text-3xl" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
         </div>
         <div id="mobileMenu" class="hidden bg-white border-t p-6 flex flex-col gap-4 shadow-xl">
-            <button onclick="showSection('home')" class="text-left font-bold translate-lang" data-key="nav-home">Accueil</button>
-            <button onclick="showSection('offers')" class="text-left font-bold translate-lang" data-key="nav-offers">Nos Offres</button>
-            <button onclick="showSection('contact')" class="text-left font-bold translate-lang" data-key="nav-contact">Contact</button>
-            <button onclick="toggleLang()" class="text-blue-700 font-bold">Changer la langue</button>
+            <button onclick="showSection('home')" class="text-left font-bold">Accueil</button>
+            <button onclick="showSection('about')" class="text-left font-bold">À Propos</button>
+            <button onclick="showSection('offers')" class="text-left font-bold">Nos Offres</button>
+            <button onclick="showSection('contact')" class="text-left font-bold">Contact</button>
         </div>
     </nav>
 
     <main class="pt-28">
         
+        <!-- Section À Propos -->
+        <section id="about" class="page-section py-20 px-6 bg-white">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl md:text-5xl font-black text-blue-900 mb-6">À Propos de Nous</h2>
+                    <div class="w-24 h-2 bg-gold mx-auto mb-8" style="background:var(--sahab-gold)"></div>
+                </div>
+                <div class="text-lg leading-relaxed text-gray-700 space-y-6">
+                    <p>
+                        <strong>Sahab Voyages</strong> est une agence marocaine 🇲🇦 spécialisée dans le tourisme, le voyage et les services associés. Nous mettons notre expertise et notre passion au service de nos clients afin de créer des expériences de voyage uniques et inoubliables.
+                    </p>
+                    <p>
+                        Nous proposons une gamme complète de services comprenant les voyages aériens et maritimes ✈️, l’organisation des voyages de Hajj et Omra 🕋, l’obtention de visas, la réservation d’hôtels, ainsi que de nombreuses autres prestations touristiques adaptées aux besoins de chaque voyageur.
+                    </p>
+                    <p>
+                        Chez Sahab Voyages, nous nous engageons à offrir des services de haute qualité, fondés sur la confiance, le professionnelisme et la satisfaction du client, en accompagnant chaque voyageur à chaque étape de son parcours.
+                    </p>
+                    <p class="font-bold italic text-blue-900 text-center text-xl">
+                        Sahab Voyages… parce que chaque voyage mérite de commencer en toute confiance et de se terminer par des souvenirs inoubliables.
+                    </p>
+                </div>
+            </div>
+        </section>
+
         <!-- Section Accueil -->
         <section id="home" class="page-section active-section">
             <div class="hero-section">
                 <div class="hero-overlay"></div>
                 <div class="relative z-10 text-center px-4">
                     <h1 class="text-6xl md:text-8xl font-black text-white drop-shadow-2xl mb-4">SAHAB VOYAGES</h1>
-                    <p class="text-2xl md:text-4xl text-white font-semibold mb-8 translate-lang" data-key="hero-sub">L'excellence au service de vos voyages</p>
-                    <button onclick="showSection('offers')" class="bg-white text-blue-900 px-12 py-5 rounded-2xl font-black text-xl hover:scale-105 transition shadow-2xl translate-lang" data-key="btn-explore">DÉCOUVRIR NOS OFFRES</button>
+                    <p class="text-2xl md:text-4xl text-white font-semibold mb-8">L'excellence au service de vos voyages</p>
+                    <button onclick="showSection('offers')" class="bg-white text-blue-900 px-12 py-5 rounded-2xl font-black text-xl hover:scale-105 transition shadow-2xl">DÉCOUVRIR NOS OFFRES</button>
                 </div>
             </div>
 
-            <!-- معرض صور المعتمرات - تكبير الصور وتحسين العرض -->
+            <!-- Banner (Untouched Position) -->
+            <div class="w-full">
+                <img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766771094/HAJZ_cpo63j.jpg" alt="Reservation Banner" class="w-full h-auto">
+            </div>
+
+            <!-- Gallery (Untouched Frame) -->
             <div class="py-24 bg-gradient-to-b from-white to-slate-100 px-6">
                 <div class="max-w-7xl mx-auto text-center">
-                    <h2 class="text-4xl md:text-6xl font-black mb-4 text-blue-900 translate-lang" data-key="gallery-title">Entrez… et ressentez l’instant</h2>
-                    <p class="text-xl md:text-2xl text-gray-600 font-medium mb-16 translate-lang" data-key="gallery-sub">Des moments rares de nos voyages spirituels</p>
+                    <h2 class="text-4xl md:text-6xl font-black mb-4 text-blue-900">Entrez… et ressentez l’instant</h2>
+                    <p class="text-xl md:text-2xl text-gray-600 font-medium mb-16">Des moments rares de nos voyages spirituels</p>
                     
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-14 px-4">
-                        <div class="client-photo-card">
-                            <img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766771737/PHOTO-2_drs1nb.jpg" alt="Client 1" class="w-full">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 px-4">
+                        <div class="client-photo-card"><img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766771737/PHOTO-2_drs1nb.jpg" alt="Client 1"></div>
+                        <div class="client-photo-card"><img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766771737/PHOTO-1_bioqpk.jpg" alt="Client 2"></div>
+                        <div class="client-photo-card"><img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766771737/LOGO-4_sdekyk.jpg" alt="Client 3"></div>
+                        <div class="client-photo-card"><img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766771745/PHOTO-3_fzimde.jpg" alt="Client 4"></div>
+                    </div>
+
+                    <!-- French Testimonials -->
+                    <div class="mt-24 max-w-5xl mx-auto">
+                        <h3 class="text-3xl font-black mb-12 text-blue-900">Avis de nos clients</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+                            <div class="bg-white p-8 rounded-3xl shadow-lg border-t-4 border-blue-600">
+                                <div class="text-amber-500 mb-4 text-xl"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                                <p class="text-gray-700 mb-4 font-bold">"Meilleure agence de voyage et meilleur accueil. Qu'Allah vous facilite."</p>
+                                <h5 class="font-black text-blue-900 text-lg">- Issam El Bidaoui</h5>
+                            </div>
+                            <div class="bg-white p-8 rounded-3xl shadow-lg border-t-4 border-blue-600">
+                                <div class="text-amber-500 mb-4 text-xl"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                                <p class="text-gray-700 mb-4 font-bold">"Une agence avec beaucoup de crédibilité. Un grand merci à M. Issam pour son professionnalisme."</p>
+                                <h5 class="font-black text-blue-900 text-lg">- Mohammed Tighzoui</h5>
+                            </div>
+                            <div class="bg-white p-8 rounded-3xl shadow-lg border-t-4 border-blue-600">
+                                <div class="text-amber-500 mb-4 text-xl"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                                <p class="text-gray-700 mb-4 font-bold">"Très heureux d'avoir choisi Sahab pour mon voyage de Omra. Services et accueil excellents."</p>
+                                <h5 class="font-black text-blue-900 text-lg">- Driss Kaaboub</h5>
+                            </div>
                         </div>
-                        <div class="client-photo-card">
-                            <img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766771737/PHOTO-1_bioqpk.jpg" alt="Client 2" class="w-full">
-                        </div>
-                        <div class="client-photo-card">
-                            <img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766771737/LOGO-4_sdekyk.jpg" alt="Client 3" class="w-full">
-                        </div>
-                        <div class="client-photo-card">
-                            <img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766771745/PHOTO-3_fzimde.jpg" alt="Client 4" class="w-full">
+                        <div class="mt-12 text-center">
+                            <a href="https://goo.gl/maps/7vuiHnpUBmmyvKeK6" target="_blank" class="inline-block bg-blue-900 text-white px-8 py-3 rounded-full font-bold hover:bg-blue-800 transition">
+                                En savoir plus sur Google Maps <i class="fas fa-external-link-alt ml-2"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Reservation Banner -->
-            <div class="promotion-banner">
-                <img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766771094/HAJZ_cpo63j.jpg" alt="Reservation Banner">
             </div>
         </section>
 
@@ -208,168 +227,80 @@
         <section id="offers" class="page-section py-20 px-4 bg-slate-50">
             <div class="max-w-7xl mx-auto">
                 <div class="text-center mb-16">
-                    <h2 class="text-5xl font-black mb-10 translate-lang" data-key="nav-offers">Nos Offres</h2>
-                    <div class="flex justify-center gap-4 mb-16">
-                        <button onclick="filterOffers('all')" id="tab-all" class="section-tab active-tab translate-lang" data-key="tab-all">Tout</button>
-                        <button onclick="filterOffers('omra')" id="tab-omra" class="section-tab bg-white shadow translate-lang" data-key="tab-omra">Omra</button>
-                        <button onclick="filterOffers('visa')" id="tab-visa" class="section-tab bg-white shadow translate-lang" data-key="tab-visa">Visa</button>
-                    </div>
+                    <h2 class="text-5xl font-black mb-10">Nos Offres</h2>
                 </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10" id="offersGrid">
-                    <!-- 1. Omra Janvier -->
-                    <div class="offer-card" data-cat="omra">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <div class="offer-card">
                         <div class="image-container"><img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766659933/%D8%B1%D8%AD%D9%84%D8%A9_%D9%8A%D9%86%D8%A7%D9%8A%D8%B1_zebgu6.png" alt="Omra Janvier"></div>
                         <div class="p-8 flex flex-col flex-grow">
-                            <h3 class="text-2xl font-black mb-2 translate-lang" data-key="o1-t">Omra Janvier 2026 (Économique)</h3>
-                            <p class="text-blue-600 font-bold mb-6 translate-lang" data-key="o1-d">du 03 au 15 janvier ou du 12 au 26 janvier</p>
-                            <a href="https://wa.me/p/25709642965314217/212623945729" target="_blank" class="btn-action translate-lang" data-key="btn-more">En savoir plus</a>
+                            <h3 class="text-2xl font-black mb-2">Omra Janvier 2026</h3>
+                            <p class="text-blue-600 font-bold mb-6">Offres économiques et premium</p>
+                            <a href="https://wa.me/212623945729" target="_blank" class="btn-action">Plus d'infos</a>
                         </div>
                     </div>
-
-                    <!-- 2. Omra Chaâbane -->
-                    <div class="offer-card" data-cat="omra">
+                    <div class="offer-card">
                         <div class="image-container"><img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766659957/%D8%B9%D9%85%D8%B1%D8%A9_%D8%B4%D8%B9%D8%A8%D8%A7%D9%86_idphpj.png" alt="Omra Chaâbane"></div>
                         <div class="p-8 flex flex-col flex-grow">
-                            <h3 class="text-2xl font-black mb-2 translate-lang" data-key="o2-t">Omra Chaâbane 2026</h3>
-                            <p class="text-blue-600 font-bold mb-6 translate-lang" data-key="o2-d">du 26 janvier au 9 février</p>
-                            <a href="https://wa.me/p/25828021510116298/212623945729" target="_blank" class="btn-action translate-lang" data-key="btn-more">En savoir plus</a>
+                            <h3 class="text-2xl font-black mb-2">Omra Chaâbane 2026</h3>
+                            <p class="text-blue-600 font-bold mb-6">Réservez dès maintenant</p>
+                            <a href="https://wa.me/212623945729" target="_blank" class="btn-action">Plus d'infos</a>
                         </div>
                     </div>
-
-                    <!-- 3. Omra Chaâbane & Ramadan -->
-                    <div class="offer-card" data-cat="omra">
-                        <div class="image-container"><img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766659933/%D8%B9%D9%85%D8%B1%D8%A9_%D8%B4%D8%B9%D8%A8%D8%A7%D9%86_%D9%88_%D8%B1%D9%85%D8%B6%D8%A7%D9%86_alq416.png" alt="Omra Chaâbane & Ramadan"></div>
-                        <div class="p-8 flex flex-col flex-grow">
-                            <h3 class="text-2xl font-black mb-2 translate-lang" data-key="o3-t">Omra Chaâbane & Ramadan 2026</h3>
-                            <p class="text-blue-600 font-bold mb-6 translate-lang" data-key="o3-d">du 03 au 23 février</p>
-                            <a href="https://wa.me/p/25953131680990622/212623945729" target="_blank" class="btn-action translate-lang" data-key="btn-more">En savoir plus</a>
-                        </div>
-                    </div>
-
-                    <!-- 4. Omra Shawwal -->
-                    <div class="offer-card" data-cat="omra">
-                        <div class="image-container"><img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766757785/%D8%B9%D9%85%D8%B1%D8%A9_%D8%B4%D9%88%D8%A7%D9%84_d4rmgm.jpg" alt="Omra Shawwal"></div>
-                        <div class="p-8 flex flex-col flex-grow">
-                            <h3 class="text-2xl font-black mb-2 translate-lang" data-key="o4-t">Omra Shawwal 2026</h3>
-                            <p class="text-blue-600 font-bold mb-6 translate-lang" data-key="o4-d">Du 28 mars au 09 avril</p>
-                            <a href="https://wa.me/p/32805010729147397/212623945729" target="_blank" class="btn-action translate-lang" data-key="btn-more">En savoir plus</a>
-                        </div>
-                    </div>
-
-                    <!-- 5. Omra Ramadan -->
-                    <div class="offer-card" data-cat="omra">
-                        <div class="image-container"><img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766757785/%D8%B9%D9%85%D8%B1%D8%A9_%D8%B1%D9%85%D8%B6%D8%A7%D9%86_lfum5k.jpg" alt="Omra Ramadan"></div>
-                        <div class="p-8 flex flex-col flex-grow">
-                            <h3 class="text-2xl font-black mb-2 translate-lang" data-key="o5-t">Omra Ramadan 2026</h3>
-                            <p class="text-blue-600 font-bold mb-6 translate-lang" data-key="o5-d">Du 19 février au 24 mars</p>
-                            <a href="https://wa.me/p/26571919809063840/212623945729" target="_blank" class="btn-action translate-lang" data-key="btn-more">En savoir plus</a>
-                        </div>
-                    </div>
-
-                    <!-- Visa Qatar -->
-                    <div class="offer-card" data-cat="visa">
+                    <div class="offer-card">
                         <div class="image-container"><img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766759278/Visa_Qatar_dk82xh.jpg" alt="Visa Qatar"></div>
                         <div class="p-8 flex flex-col flex-grow">
-                            <h3 class="text-2xl font-black mb-2 translate-lang" data-key="v1-t">E-Visa État du Qatar</h3>
-                            <p class="text-blue-800 font-bold mb-6 translate-lang" data-key="v-sub">Commandez maintenant</p>
-                            <a href="https://wa.me/p/6504344723013509/212623945729" target="_blank" class="btn-action btn-visa translate-lang" data-key="btn-order">Commander</a>
-                        </div>
-                    </div>
-
-                    <!-- Visa Saudi 4j -->
-                    <div class="offer-card" data-cat="visa">
-                        <div class="image-container"><img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766759766/Visa_Saudi_pu1rai.jpg" alt="Visa Saudi 4j"></div>
-                        <div class="p-8 flex flex-col flex-grow">
-                            <h3 class="text-2xl font-black mb-2 translate-lang" data-key="v2-t">Visa Saudi (4 jours)</h3>
-                            <p class="text-blue-800 font-bold mb-6 translate-lang" data-key="v-sub">Commandez maintenant</p>
-                            <a href="https://wa.me/p/6635789499807855/212623945729" target="_blank" class="btn-action btn-visa translate-lang" data-key="btn-order">Commander</a>
-                        </div>
-                    </div>
-
-                    <!-- Visa Oman -->
-                    <div class="offer-card" data-cat="visa">
-                        <div class="image-container"><img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766759773/Visa_Oman_kmaz4t.jpg" alt="Visa Oman"></div>
-                        <div class="p-8 flex flex-col flex-grow">
-                            <h3 class="text-2xl font-black mb-2 translate-lang" data-key="v3-t">E-Visa Oman</h3>
-                            <p class="text-blue-800 font-bold mb-6 translate-lang" data-key="v-sub">Commandez maintenant</p>
-                            <a href="https://wa.me/p/24198728483106864/212623945729" target="_blank" class="btn-action btn-visa translate-lang" data-key="btn-order">Commander</a>
-                        </div>
-                    </div>
-
-                    <!-- Visa Bahreïn -->
-                    <div class="offer-card" data-cat="visa">
-                        <div class="image-container"><img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766759766/Visa_Bahrin_ojx0op.jpg" alt="Visa Bahreïn"></div>
-                        <div class="p-8 flex flex-col flex-grow">
-                            <h3 class="text-2xl font-black mb-2 translate-lang" data-key="v4-t">E-Visa Bahreïn</h3>
-                            <p class="text-blue-800 font-bold mb-6 translate-lang" data-key="v-sub">Commandez maintenant</p>
-                            <a href="https://wa.me/p/6527925420589249/212623945729" target="_blank" class="btn-action btn-visa translate-lang" data-key="btn-order">Commander</a>
-                        </div>
-                    </div>
-
-                    <!-- Visa Saudi 365 -->
-                    <div class="offer-card" data-cat="visa">
-                        <div class="image-container"><img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766759766/Visa_Saudi_365_rseaqk.jpg" alt="Visa Saudi 365"></div>
-                        <div class="p-8 flex flex-col flex-grow">
-                            <h3 class="text-2xl font-black mb-2 translate-lang" data-key="v5-t">E-Visa Saudi (365 jours)</h3>
-                            <p class="text-blue-800 font-bold mb-6 translate-lang" data-key="v-sub">Commandez maintenant</p>
-                            <a href="https://wa.me/p/6635909943111318/212623945729" target="_blank" class="btn-action btn-visa translate-lang" data-key="btn-order">Commander</a>
-                        </div>
-                    </div>
-
-                    <!-- Combined Gulf Visa -->
-                    <div class="offer-card" data-cat="visa">
-                        <div class="image-container"><img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766759766/Qatar_-_Saudi_-_Bahrain_-_.._vu9tgy.jpg" alt="Gulf Visas"></div>
-                        <div class="p-8 flex flex-col flex-grow">
-                            <h3 class="text-2xl font-black mb-2 translate-lang" data-key="v6-t">E-Visa pays du Golfe</h3>
-                            <p class="text-blue-800 font-bold mb-6 translate-lang" data-key="v-sub">Commandez maintenant</p>
-                            <a href="https://wa.me/p/6655750361179310/212623945729" target="_blank" class="btn-action btn-visa translate-lang" data-key="btn-order">Commander</a>
+                            <h3 class="text-2xl font-black mb-2">E-Visa État du Qatar</h3>
+                            <p class="text-blue-800 font-bold mb-6">Traitement rapide</p>
+                            <a href="https://wa.me/212623945729" target="_blank" class="btn-action" style="background-color: var(--sahab-blue);">Commander</a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Section Contact -->
+        <!-- Section Contact (Updated Contacts) -->
         <section id="contact" class="page-section py-24 bg-white px-6">
             <div class="max-w-7xl mx-auto">
-                <div class="text-center mb-16"><h2 class="text-5xl font-black translate-lang" data-key="nav-contact">Contactez-nous</h2></div>
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+                <div class="text-center mb-16"><h2 class="text-5xl font-black">Contactez-nous</h2></div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
                     <div class="space-y-6">
-                        <a href="https://maps.google.com/?q=Aml+4,+Rue+27,+N°44,+Bernoussi,+Casablanca" target="_blank" class="flex items-center gap-6 p-6 bg-blue-50 rounded-3xl group">
-                            <div class="text-4xl text-blue-800 group-hover:scale-110 transition"><i class="fas fa-map-marker-alt"></i></div>
+                        <!-- Huge Casablanca Branch -->
+                        <a href="https://maps.app.goo.gl/Qt5k2r5CWC7WQ7Cy9" target="_blank" class="flex flex-col p-10 bg-blue-50 rounded-3xl border-4 border-blue-600 shadow-xl group">
+                            <div class="flex items-center gap-4 mb-4">
+                                <i class="fas fa-star text-amber-500 text-3xl"></i>
+                                <span class="text-blue-900 font-black text-2xl uppercase">Siège Principal</span>
+                            </div>
+                            <h4 class="text-3xl font-black text-blue-900 mb-2">Casablanca</h4>
+                            <p class="text-xl font-bold text-gray-700 underline group-hover:text-blue-800">Aml 4, Rue 27, N°44, Bernoussi</p>
+                            <div class="mt-4 text-blue-600 font-bold"><i class="fas fa-map-marked-alt mr-2"></i> Ouvrir dans Maps</div>
+                        </a>
+
+                        <!-- Tata Branch -->
+                        <a href="https://maps.app.goo.gl/aaxURvqcQiJPrpKt5" target="_blank" class="flex items-center gap-6 p-6 bg-gray-50 rounded-3xl border-2 border-gray-200">
+                            <div class="text-4xl text-amber-600"><i class="fas fa-map-marker-alt"></i></div>
                             <div>
-                                <h4 class="text-xl font-black translate-lang" data-key="c-addr">Siège Casablanca</h4>
-                                <p class="text-gray-600 font-semibold underline decoration-blue-200">Aml 4, Rue 27, N°44, Bernoussi, Casablanca</p>
+                                <h4 class="text-xl font-black">Succursale Tata</h4>
+                                <p class="text-gray-600 font-bold">Hay Naser, Tata, Maroc</p>
                             </div>
                         </a>
-                        <a href="https://share.google/Ie5I9hZFNjuNHE8Sv" target="_blank" class="flex items-center gap-6 p-6 bg-amber-50 rounded-3xl group border-2 border-amber-200">
-                            <div class="text-4xl text-amber-600 group-hover:scale-110 transition"><i class="fas fa-map-marked-alt"></i></div>
-                            <div>
-                                <h4 class="text-xl font-black translate-lang" data-key="c-addr-tata">Succursale Tata</h4>
-                                <p class="text-gray-600 font-semibold underline decoration-amber-300">Hay Naser, Tata, Maroc</p>
-                            </div>
-                        </a>
-                        <div class="p-6 bg-green-50 rounded-3xl">
-                            <div class="flex items-center gap-6 mb-4">
-                                <div class="text-4xl text-green-600"><i class="fab fa-whatsapp"></i></div>
-                                <h4 class="text-xl font-black translate-lang" data-key="c-call">Appelez-nous</h4>
-                            </div>
-                            <div class="space-y-3 px-2">
-                                <a href="tel:+212666249978" class="block text-gray-700 font-bold text-lg hover:text-green-700 transition" dir="ltr">+212 666 24 99 78</a>
-                                <a href="tel:+212666123893" class="block text-gray-700 font-bold text-lg hover:text-green-700 transition" dir="ltr">+212 666 12 38 93</a>
-                                <a href="https://wa.me/212623945729" target="_blank" class="block text-green-700 font-black text-2xl hover:scale-105 transition" dir="ltr">+212 623 94 57 29</a>
-                            </div>
+
+                        <!-- Contact Buttons (Phone, WhatsApp, Email) -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <a href="tel:0522759167" class="contact-btn bg-blue-600 text-white">
+                                <i class="fas fa-phone-alt text-2xl"></i>
+                                <span>Fixe: 05.22.75.91.67</span>
+                            </a>
+                            <a href="https://wa.me/212623945729" target="_blank" class="contact-btn bg-green-500 text-white">
+                                <i class="fab fa-whatsapp text-3xl"></i>
+                                <span>Watts: +212 623 94 57 29</span>
+                            </a>
+                            <a href="mailto:agencesahab@gmail.com" class="contact-btn bg-slate-800 text-white sm:col-span-2">
+                                <i class="fas fa-envelope text-2xl"></i>
+                                <span>Email: agencesahab@gmail.com</span>
+                            </a>
                         </div>
-                        <a href="mailto:sahabvoyages@gmail.com" class="flex items-center gap-6 p-6 bg-slate-50 rounded-3xl group">
-                            <div class="text-4xl text-slate-600 group-hover:scale-110 transition"><i class="fas fa-envelope"></i></div>
-                            <div>
-                                <h4 class="text-xl font-black translate-lang" data-key="c-mail">Email</h4>
-                                <p class="text-gray-600 font-bold underline decoration-slate-300">sahabvoyages@gmail.com</p>
-                            </div>
-                        </a>
                     </div>
-                    <div class="rounded-[40px] overflow-hidden shadow-2xl h-[550px] border-4 border-white">
+                    <div class="rounded-[40px] overflow-hidden shadow-2xl h-[600px] border-4 border-white">
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3323.084!2d-7.5024!3d33.603!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xda6106649710f635%3A0xc3b5e4063857508e!2sBernoussi%2C%20Casablanca!5e0!3m2!1sen!2sma!4v1700000000000" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                     </div>
                 </div>
@@ -377,41 +308,43 @@
         </section>
     </main>
 
-    <!-- Footer -->
+    <!-- Footer (Restricted Changes) -->
     <footer class="bg-gray-950 text-white py-20 px-6">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 items-start">
             <div class="flex flex-col items-center md:items-start">
                 <img src="https://res.cloudinary.com/dkusr0hu1/image/upload/v1766748193/LOGO_SAHAB_cr3qjr.png" alt="Logo" class="h-32 mb-6 brightness-125">
-                <p class="text-gray-400 font-semibold text-center md:text-left translate-lang" data-key="f-sub">L'excellence au service de vos voyages.</p>
+                <p class="text-gray-400 font-semibold text-center md:text-left">L'excellence au service de vos voyages.</p>
             </div>
             <div class="flex flex-col items-center md:items-start">
-                <h4 class="text-xl font-black mb-8 border-b-2 border-blue-600 pb-2 translate-lang" data-key="nav-contact">Bureaux</h4>
+                <h4 class="text-xl font-black mb-8 border-b-2 border-blue-600 pb-2">Nos Adresses</h4>
                 <div class="space-y-4 text-gray-400">
-                    <a href="https://maps.google.com/?q=Aml+4,+Rue+27,+N°44,+Bernoussi,+Casablanca" target="_blank" class="flex gap-3 hover:text-white transition">
+                    <a href="https://maps.app.goo.gl/Qt5k2r5CWC7WQ7Cy9" target="_blank" class="flex gap-3 hover:text-white transition">
                         <i class="fas fa-map-marker-alt text-blue-500 mt-1"></i>
-                        <span class="text-xs">Casablanca: Aml 4, Rue 27, N°44, Bernoussi</span>
+                        <span class="text-xs font-bold text-white underline">Casablanca: Aml 4, Rue 27, N°44, Bernoussi</span>
                     </a>
-                    <a href="https://share.google/Ie5I9hZFNjuNHE8Sv" target="_blank" class="flex gap-3 hover:text-white transition">
+                    <a href="https://maps.app.goo.gl/aaxURvqcQiJPrpKt5" target="_blank" class="flex gap-3 hover:text-white transition">
                         <i class="fas fa-map-marker-alt text-amber-500 mt-1"></i>
                         <span class="text-xs">Tata: Hay Naser, Tata</span>
                     </a>
-                    <a href="tel:+212623945729" class="flex gap-3 hover:text-white transition">
+                    <a href="tel:0522759167" class="flex gap-3 hover:text-white transition">
                         <i class="fas fa-phone text-blue-500"></i>
-                        <span dir="ltr">+212 623 94 57 29</span>
+                        <span dir="ltr">Fixe: 05.22.75.91.67</span>
                     </a>
                 </div>
             </div>
+            <!-- Untouched Horaires Section -->
             <div class="flex flex-col items-center md:items-start">
-                <h4 class="text-xl font-black mb-8 border-b-2 border-blue-600 pb-2 translate-lang" data-key="f-hours">Horaires</h4>
-                <div class="schedule-grid w-full">
-                    <div class="schedule-row"><span>Lun - Jeu</span> <span>09:00 – 18:30</span></div>
-                    <div class="schedule-row"><span>Ven</span> <span>09:00 – 18:30</span></div>
-                    <div class="schedule-row"><span>Sam</span> <span>09:00 – 13:00</span></div>
-                    <div class="schedule-row text-red-400 border-none font-bold"><span>Dim</span> <span>Fermé</span></div>
+                <h4 class="text-xl font-black mb-8 border-b-2 border-blue-600 pb-2">Horaires</h4>
+                <div class="grid gap-2 w-full text-sm">
+                    <div class="flex justify-between border-b border-white/10 pb-1"><span>Lun - Jeu</span> <span>09:00 – 18:30</span></div>
+                    <div class="flex justify-between border-b border-white/10 pb-1"><span>Ven</span> <span>09:00 – 18:30</span></div>
+                    <div class="flex justify-between border-b border-white/10 pb-1"><span>Sam</span> <span>09:00 – 13:00</span></div>
+                    <div class="flex justify-between text-red-400 font-bold"><span>Dim</span> <span>Fermé</span></div>
                 </div>
             </div>
+            <!-- Untouched Suivez-nous Section -->
             <div class="flex flex-col items-center md:items-end">
-                <h4 class="text-xl font-black mb-8 translate-lang" data-key="f-follow">Suivez-nous</h4>
+                <h4 class="text-xl font-black mb-8">Suivez-nous</h4>
                 <div class="grid grid-cols-2 gap-4">
                     <a href="https://www.tiktok.com/@sahab_voyages" target="_blank" class="flex items-center gap-2 bg-gray-900 p-2 rounded hover:bg-white hover:text-black transition"><i class="fab fa-tiktok"></i> <span class="text-xs font-bold">TikTok</span></a>
                     <a href="https://www.instagram.com/sahabvoyages" target="_blank" class="flex items-center gap-2 bg-gray-900 p-2 rounded hover:bg-white hover:text-pink-600 transition"><i class="fab fa-instagram"></i> <span class="text-xs font-bold">Insta</span></a>
@@ -420,76 +353,17 @@
                 </div>
             </div>
         </div>
-        <div class="text-center mt-16 border-t border-gray-900 pt-8 text-gray-500 font-bold">© 2026 SAHAB VOYAGES. TOUS DROITS RÉSERVÉS.</div>
+        <div class="text-center mt-16 border-t border-gray-900 pt-8 text-gray-500 font-bold uppercase tracking-widest">© 2026 SAHAB VOYAGES. TOUS DROITS RÉSERVÉS.</div>
     </footer>
 
     <script>
-        let currentLang = 'fr';
-        const i18n = {
-            fr: {
-                "nav-home": "Accueil", "nav-offers": "Nos Offres", "nav-contact": "Contact",
-                "hero-sub": "L'excellence au service de vos voyages", "btn-explore": "DÉCOUVRIR NOS OFFRES",
-                "tab-all": "Tout", "tab-omra": "Omra", "tab-visa": "Visa", "btn-more": "En savoir plus",
-                "btn-order": "Commander", "v-sub": "Commandez maintenant",
-                "gallery-title": "Entrez… et ressentez l’instant",
-                "gallery-sub": "Des moments rares de nos voyages spirituels",
-                "o1-t": "Omra Janvier 2026 (Économique)", "o1-d": "du 03 au 15 janvier ou du 12 au 26 janvier",
-                "o2-t": "Omra Chaâbane 2026", "o2-d": "du 26 janvier au 9 février",
-                "o3-t": "Omra Chaâbane & Ramadan 2026", "o3-d": "du 03 au 23 février",
-                "o4-t": "Omra Shawwal 2026", "o4-d": "Du 28 mars au 09 avril",
-                "o5-t": "Omra Ramadan 2026", "o5-d": "Du 19 février au 24 mars",
-                "v1-t": "E-Visa État du Qatar", "v2-t": "Visa Saudi (4 jours)", "v3-t": "E-Visa Oman",
-                "v4-t": "E-Visa Bahreïn", "v5-t": "E-Visa Saudi (365 jours)", "v6-t": "E-Visa pays du Golfe",
-                "c-addr": "Siège Casablanca", "c-addr-tata": "Succursale Tata", "c-call": "Appelez-nous", "c-mail": "Email",
-                "f-sub": "L'excellence au service de vos voyages.", "f-follow": "Suivez-nous", "f-hours": "Horaires"
-            },
-            ar: {
-                "nav-home": "الرئيسية", "nav-offers": "عروضنا", "nav-contact": "اتصل بنا",
-                "hero-sub": "التميز في خدمتكم هو هدفنا الأسمى", "btn-explore": "اكتشف العروض",
-                "tab-all": "الكل", "tab-omra": "العمرة", "tab-visa": "التأشيرات", "btn-more": "تفاصيل أكثر",
-                "btn-order": "اطلب الآن", "v-sub": "اطلب الآن",
-                "gallery-title": "تفضل... واشعر باللحظة",
-                "gallery-sub": "لحظات نادرة من رحلاتنا الروحانية",
-                "o1-t": "عمرة يناير 2026 (اقتصادية)", "o1-d": "من 03 إلى 15 يناير أو من 12 إلى 26 يناير",
-                "o2-t": "عمرة شعبان 2026", "o2-d": "من 26 يناير إلى 9 فبراير",
-                "o3-t": "عمرة شعبان ورمضان 2026", "o3-d": "من 03 إلى 23 فبراير",
-                "o4-t": "عمرة شوال 2026", "o4-d": "من 28 مارس إلى 09 أبريل",
-                "o5-t": "عمرة رمضان 2026", "o5-d": "من 19 فبراير إلى 24 مارس",
-                "v1-t": "تأشيرة دولة قطر الإلكترونية", "v2-t": "تأشيرة السعودية (4 أيام)", "v3-t": "تأشيرة سلطنة عمان الإلكترونية",
-                "v4-t": "تأشيرة البحرين الإلكترونية", "v5-t": "تأشيرة السعودية (365 يوماً)", "v6-t": "تأشيرات دول الخليج",
-                "c-addr": "مقر الدار البيضاء", "c-addr-tata": "فرع مدينة طاطا", "c-call": "اتصل بنا", "c-mail": "البريد الإلكتروني",
-                "f-sub": "التميز في خدمتكم هو هدفنا الأسمى.", "f-follow": "تابعونا على", "f-hours": "أوقات العمل"
-            }
-        };
-
         function showSection(id) {
             document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active-section'));
             document.getElementById(id).classList.add('active-section');
             document.getElementById('mobileMenu').classList.add('hidden');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-
-        function filterOffers(cat) {
-            document.querySelectorAll('.section-tab').forEach(t => t.classList.remove('active-tab', 'bg-white', 'shadow'));
-            document.getElementById(`tab-${cat}`).classList.add('active-tab');
-            document.querySelectorAll('.offer-card').forEach(card => {
-                if(cat === 'all' || card.getAttribute('data-cat') === cat) card.style.display = 'flex';
-                else card.style.display = 'none';
-            });
-        }
-
         function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('hidden'); }
-
-        function toggleLang() {
-            currentLang = currentLang === 'fr' ? 'ar' : 'fr';
-            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-            document.body.classList.toggle('rtl', currentLang === 'ar');
-            document.getElementById('langBtn').innerText = currentLang === 'fr' ? 'العربية' : 'Français';
-            document.querySelectorAll('.translate-lang').forEach(el => {
-                const key = el.getAttribute('data-key');
-                if (i18n[currentLang][key]) el.innerText = i18n[currentLang][key];
-            });
-        }
     </script>
 </body>
 </html>
