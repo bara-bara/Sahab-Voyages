@@ -76,15 +76,24 @@
         }
         .btn-visa { background-color: var(--sahab-blue); }
 
-        .section-tab {
-            cursor: pointer;
-            padding: 12px 20px;
-            border-radius: 50px;
-            font-weight: 800;
-            transition: 0.3s;
-            border: 2px solid #e5e7eb;
-            white-space: nowrap;
-        }
+.section-tab {
+    cursor: pointer;
+    padding: 10px 16px;
+    border-radius: 50px;
+    font-weight: 800;
+    transition: 0.3s;
+    border: 2px solid #e5e7eb;
+    white-space: nowrap;
+    font-size: 14px;
+}
+
+@media (max-width: 640px) {
+    .section-tab {
+        padding: 8px 12px;
+        font-size: 12px;
+        font-weight: 700;
+    }
+}
         .active-tab { background: var(--sahab-blue); color: white; border-color: var(--sahab-blue); }
 
         .page-section { display: none; }
@@ -146,13 +155,28 @@
         .msg-bot { background: #e2e8f0; align-self: flex-start; }
         .msg-user { background: var(--sahab-blue); color: white; align-self: flex-end; }
         
-        .tabs-container {
-            display: flex;
-            overflow-x: auto;
-            gap: 10px;
-            padding-bottom: 10px;
-            justify-content: center;
-        }
+.tabs-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 8px;
+    padding-bottom: 10px;
+    justify-content: center;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.tabs-container::-webkit-scrollbar {
+    display: none;
+}
+
+@media (max-width: 640px) {
+    .tabs-container {
+        justify-content: flex-start;
+        padding-left: 10px;
+        padding-right: 10px;
+        gap: 6px;
+    }
+}
     </style>
 </head>
 <body>
