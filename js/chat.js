@@ -1,6 +1,6 @@
 // ============ GEMINI AI CHAT SYSTEM ============
 
-const GEMINI_API_KEY = 'AIzaSyBG7sHHEP0fOCVxTYsMIhP0bwv2fVX-KJo';
+const GEMINI_API_KEY = 'AIzaSyBFBvFr5o70LKL3S3isBRvSy2rrnQcS9Dk';
 let chatHistory = [];
 let geminiModel = null;
 
